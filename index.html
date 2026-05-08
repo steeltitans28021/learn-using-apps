@@ -1035,8 +1035,9 @@ function translatePlatform(platform, language) {
 
     // Translate title
     if (translations[language][data.title]) {
-        data.title = translations[language][data.title];
-    }
+function translateText(text, language) {
+    return translations[language]?.[text] || text;
+}    
 
     // Translate intro
     if (translations[language][data.intro]) {
@@ -1078,8 +1079,11 @@ function translatePlatform(platform, language) {
             document.getElementById('course').style.display = 'block';
             
             const data = platforms[platform];
-            document.getElementById('course-title').textContent = data.title;
-            document.getElementById('course-intro').textContent = data.intro;
+            document.getElementById('course-title').textContent =
+    translateText(data.title, selectedLanguage);
+
+document.getElementById('course-intro').textContent =
+    translateText(data.intro, selectedLanguage);
             document.getElementById('profile-section').style.display = 'block';
             
             currentPlatform = platform;
@@ -1110,8 +1114,8 @@ function translatePlatform(platform, language) {
                 levelCard.className = `level-card ${data.ai ? 'ai-lesson' : ''} ${!isUnlocked ? 'locked' : ''}`;
                 levelCard.innerHTML = `
                     <div class="level-number">${data.ai ? '🤖' : `Level ${index + 1}`}</div>
-                    <h3>${level.title}</h3>
-                    <p>${level.description}</p>
+                   <h3>${translateText(level.title, selectedLanguage)}</h3>
+<p>${translateText(level.description, selectedLanguage)}</p>
                     <div class="points">${isCompleted ? '✅ Completed' : `+${level.points} Points`}</div>
                     ${!isCompleted ? `<button class="start-lesson ${data.ai ? 'ai-lesson-btn' : ''}" onclick="startLesson('${platform}', ${index})">
                         ${data.ai ? '🚀 Start AI Lesson' : 'Start Lesson'}
