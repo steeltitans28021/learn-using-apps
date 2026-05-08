@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Use Social Media & AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .platform-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .platform-card.ai-card {
+            border: 3px solid #00d4ff;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(0,212,255,0.1));
+        }
+
+        .platform-card.ai-card::before {
+            background: linear-gradient(90deg, #00d4ff, #0099cc, #00bfff);
+            height: 6px;
+        }
+
+        /* Colorful Social Media Icons */
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Facebook */
+        .platform-card[data-platform="facebook"] .platform-icon {
+            color: #1877F2;
+            background: linear-gradient(135deg, rgba(24, 119, 242, 0.1), rgba(24, 119, 242, 0.05));
+            border-radius: 50%;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        /* Instagram */
+        .platform-card[data-platform="instagram"] .platform-icon {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-radius: 50%;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        /* TikTok */
+        .platform-card[data-platform="tiktok"] .platform-icon {
+            color: #FF0050;
+            background: linear-gradient(135deg, rgba(255, 0, 80, 0.1), rgba(255, 0, 80, 0.05));
+            border-radius: 50%;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        /* YouTube */
+        .platform-card[data-platform="youtube"] .platform-icon {
+            color: #FF0000;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.05));
+            border-radius: 50%;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        /* WhatsApp */
+        .platform-card[data-platform="whatsapp"] .platform-icon {
+            color: #25D366;
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05));
+            border-radius: 50%;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        /* Messenger */
+        .platform-card[data-platform="messenger"] .platform-icon {
+            color: #0084FF;
+            background: linear-gradient(135deg, rgba(0, 132, 255, 0.1), rgba(0, 132, 255, 0.05));
+            border-radius: 50%;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        /* AI Icons (already have colors) */
+        .platform-card[data-platform="chatgpt"] .platform-icon {
+            color: #10a37f !important;
+        }
+
+        .platform-card[data-platform="gemini"] .platform-icon {
+            color: #4285f4 !important;
+        }
+
+        .platform-card[data-platform="meta-ai"] .platform-icon {
+            color: #00d4ff !important;
+        }
+
+        /* Hover effects for icons */
+        .platform-card:hover .platform-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .ai-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,212,255,0.4);
+        }
+
+        .platform-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Course Section */
+        .course-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .course-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #5a67d8;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card.ai-lesson {
+            border-left: 5px solid #00d4ff;
+            background: linear-gradient(135deg, #f8fbff, white);
+        }
+
+        .level-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .level-card.locked::before {
+            content: "🔒 Locked";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .level-card:hover:not(.locked) {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .level-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .level-card.ai-lesson .level-number {
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+        }
+
+        .level-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .level-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .points {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .start-lesson {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .start-lesson.ai-lesson-btn {
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+        }
+
+        .start-lesson:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        /* Lesson Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .lesson-step {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .lesson-step.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .prev-btn {
+            background: #6c757d;
+            color: white;
+        }
+
+        .prev-btn:hover {
+            background: #5a6268;
+        }
+
+        .next-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .finish-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+
+           /* Reward Modal */
+        .reward-modal {
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .stars {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .platforms-grid { grid-template-columns: 1fr; }
+            .levels-grid { grid-template-columns: 1fr; }
+            .modal-content { margin: 10% 20px; padding: 30px 20px; }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to <span style="color: #ffd700;">Learn How to Use Social Media & AI</span></h1>
+            <p class="subtitle">Learn step-by-step how to use today's most popular social media apps and AI chatbots in a simple and easy way.</p>
+            <p class="description">Whether you are a beginner or just want to improve your digital skills, this learning platform will guide you through everything you need to know — from creating an account to using AI chatbots safely and confidently.</p>
+            <p style="font-size: 1.3rem; margin-bottom: 50px;"><strong>Main Goal:</strong> Choose a platform below and start learning through interactive lessons, levels, and rewards.</p>
+            
+            <div class="platforms-grid">
+                <!-- Social Media Platforms -->
+                <div class="platform-card" data-platform="facebook">
+                    <div class="platform-icon"><i class="fab fa-facebook-f"></i></div>
+                    <h3>Facebook</h3>
+                </div>
+                <div class="platform-card" data-platform="instagram">
+                    <div class="platform-icon"><i class="fab fa-instagram"></i></div>
+                    <h3>Instagram</h3>
+                </div>
+                <div class="platform-card" data-platform="tiktok">
+                    <div class="platform-icon"><i class="fab fa-tiktok"></i></div>
+                    <h3>TikTok</h3>
+                </div>
+                <div class="platform-card" data-platform="youtube">
+                    <div class="platform-icon"><i class="fab fa-youtube"></i></div>
+                    <h3>YouTube</h3>
+                </div>
+                <div class="platform-card" data-platform="whatsapp">
+                    <div class="platform-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>WhatsApp</h3>
+                </div>
+                <div class="platform-card" data-platform="messenger">
+                    <div class="platform-icon"><i class="fab fa-facebook-messenger"></i></div>
+                    <h3>Messenger</h3>
+                </div>
+
+                <!-- AI Platforms - New Section! -->
+                <div class="platform-card ai-card" data-platform="chatgpt">
+    <div class="ai-badge">🤖 AI</div>
+    
+    <div class="platform-icon">
+        <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
+            alt="ChatGPT Logo"
+            style="width: 70px; height: 70px;"
+        />
+    </div>
+
+    <h3>ChatGPT</h3>
+</div>
+               <div class="platform-card ai-card" data-platform="gemini">
+    <div class="ai-badge">🤖 AI</div>
+
+    <div class="platform-icon">
+        <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg"
+            alt="Gemini Logo"
+            style="width: 90px; height: 90px; object-fit: contain;"
+        />
+    </div>
+
+    <h3>Gemini</h3>
+</div>
+               <div class="platform-card ai-card" data-platform="meta-ai">
+    <div class="ai-badge">🤖 AI</div>
+
+    <div class="platform-icon">
+        <img 
+            src="download.jpeg" 
+            alt="Meta AI Logo"
+            style="width: 70px; height: 70px; object-fit: contain;"
+        />
+    </div>
+
+    <h3>Meta AI</h3>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Section -->
+    <section id="course" class="container course-section">
+        <button class="back-btn" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Home</button>
+        
+        <div class="course-header">
+            <h2 id="course-title"></h2>
+            <p id="course-intro"></p>
+            <div id="profile-section" class="profile-section" style="display: none;">
+                <h3><i class="fas fa-trophy"></i> Your Progress</h3>
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-points">0</div>
+                        <div>Total Points</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="lessons-completed">0</div>
+                        <div>Lessons Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="current-level">1</div>
+                        <div>Current Level</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="badges-earned">0</div>
+                        <div>Badges Earned</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="levels-grid" id="levels-grid"></div>
+    </section>
+
+    <!-- Lesson Modal -->
+    <div id="lesson-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLesson()">&times;</span>
+            <div id="lesson-content"></div>
+        </div>
+    </div>
+    <div id="language-modal" class="modal">
+    <div class="modal-content" style="text-align:center;">
+        <span class="close" onclick="closeLanguageModal()">&times;</span>
+
+        <h2>Select Your Language</h2>
+
+        <button class="start-lesson" onclick="selectLanguage('english')">English</button>
+
+        <button class="start-lesson" onclick="selectLanguage('spanish')">Spanish</button>
+
+        <button class="start-lesson" onclick="selectLanguage('french')">French</button>
+
+        <button class="start-lesson" onclick="selectLanguage('bangla')">Bangla</button>
+
+        <button class="start-lesson" onclick="selectLanguage('arabic')">Arabic</button>
+
+        <button class="start-lesson" onclick="selectLanguage('chinese')">Chinese</button>
+    </div>
+</div>
+
+
+    <!-- Reward Modal -->
+    <div id="reward-modal" class="modal">
+        <div class="modal-content reward-modal">
+            <div class="stars" id="reward-stars">⭐⭐⭐⭐⭐</div>
+            <h2>Congratulations!</h2>
+            <p id="reward-message"></p>
+            <div style="font-size: 1.5rem; color: #28a745; margin: 20px 0;">
+                <div>+<span id="reward-points">500</span> Points</div>
+            </div>
+            <p style="margin: 20px 0; font-size: 1.2rem;">
+                <strong id="unlocks"></strong>
+            </p>
+            <div class="lesson-nav">
+                <button class="nav-btn finish-btn" onclick="showRewardComplete()">Continue Learning</button>
+                <button class="nav-btn" onclick="showHome()">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let selectedLanguage = 'english';
+let selectedPlatform = '';
+        let userData = {
+            points: 0,
+            lessonsCompleted: 0,
+            currentLevel: 1,
+            badges: [],
+            completedLessons: {}
+        };
+
+        // Updated Platforms Data with AI!
+        const platforms = {
+            // Social Media Platforms
+            facebook: {
+                title: "Facebook Learning Course",
+                intro: "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.",
+                levels: [
+                    {
+                        id: "facebook-1",
+                        title: "Create & Register an Account",
+                        description: "Learn how to create a Facebook account from scratch",
+                        points: 500,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "Open Facebook", content: "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer." },
+                            { title: "Click 'Create New Account'", content: "Look for the green button that says <strong>'Create New Account'</strong> and click it." },
+                            { title: "Enter Your Information", content: `
+                                <ul>
+                                    <li><strong>Your full name</strong></li>
+                                    <li><strong>Email or phone number</strong></li>
+                                    <li><strong>Create a strong password</strong> (use letters, numbers, and symbols)</li>
+                                    <li><strong>Your birthday</strong></li>
+                                    <li><strong>Your gender</strong></li>
+                                </ul>` },
+                            { title: "Click 'Sign Up'", content: "Review your information and click the green <strong>'Sign Up'</strong> button." },
+                            { title: "Verify Your Account", content: "Check your email or phone for a verification code from Facebook and enter it to complete registration." }
+                        ]
+                    },
+                    {
+                        id: "facebook-2",
+                        title: "Logging Into Your Account",
+                        description: "Learn how to log in safely and recover your password",
+                        points: 500,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "Enter Login Details", content: "Use your email/phone and password to log in." },
+                            { title: "Forgot Password?", content: "Click 'Forgot Password?' and follow the steps to reset it via email or phone." },
+                            { title: "Stay Safe", content: "Don't save password on public computers. Use two-factor authentication when available." }
+                        ]
+                    }
+                ]
+            },
+            instagram: {
+                title: "Instagram Learning Course",
+                intro: "Master Instagram - stories, reels, and connecting with friends.",
+                levels: [
+                    { id: "instagram-1", title: "Create Instagram Account", description: "Set up your Instagram profile", points: 500, difficulty: "Easy", steps: [
+                        { title: "Download App", content: "Get Instagram from App Store or Google Play" },
+                        { title: "Sign Up", content: "Use email, phone, or Facebook to create account" },
+                        { title: "Set Profile", content: "Add photo, bio, and username" }
+                    ]},
+                    { id: "instagram-2", title: "Follow Friends", description: "Find and follow people you know", points: 700, difficulty: "Medium", steps: [
+                        { title: "Search", content: "Use search icon to find friends" },
+                        { title: "Follow", content: "Tap 'Follow' button on profiles" },
+                        { title: "Explore", content: "Check Explore page for interests" }
+                    ]}
+                ]
+            },
+
+            // NEW AI Platforms!
+            chatgpt: {
+                title: "ChatGPT Learning Course",
+                intro: "Learn to use ChatGPT - the world's most popular AI chatbot for asking questions, getting help, and creating content safely.",
+                ai: true,
+                levels: [
+                    {
+                        id: "chatgpt-1",
+                        title: "Getting Started with ChatGPT",
+                        description: "Create account and ask your first question",
+                        points: 600,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "Visit ChatGPT", content: "Go to <strong>chat.openai.com</strong> or download the mobile app." },
+                            { title: "Sign Up", content: `
+                                <ul>
+                                    <li>Click <strong>'Sign up'</strong></li>
+                                    <li>Use email, Google, or Microsoft account</li>
+                                    <li>Verify your email</li>
+                                </ul>` },
+                            { title: "Ask First Question", content: `
+                                <strong>Try this:</strong><br>
+                                <em>"Explain machine learning in simple terms"</em><br><br>
+                                Type in the chat box and press Enter!` },
+                            { title: "Chat History", content: "Your conversations are saved on the left sidebar." }
+                        ]
+                    },
+                    {
+                        id: "chatgpt-2",
+                        title: "Best Prompts & Tips",
+                        description: "Learn how to ask better questions for better answers",
+                        points: 800,
+                        difficulty: "Medium",
+                        steps: [
+                            { title: "Be Specific", content: `
+                                <strong>Bad:</strong> "Tell me about dogs"<br>
+                                <strong>Good:</strong> "Explain 5 popular dog breeds for apartments with pros and cons"` },
+                            { title: "Use Roles", content: `
+                                "Act as a teacher and explain..."<br>
+                                "Pretend you're a chef and give me..."` },
+                            { title: "Ask Follow-ups", content: "Continue the conversation naturally like talking to a friend!" }
+                        ]
+                    },
+                    {
+                        id: "chatgpt-3",
+                        title: "ChatGPT Safety",
+                        description: "Use AI responsibly and protect your privacy",
+                        points: 1000,
+                        difficulty: "Hard",
+                        steps: [
+                            { title: "Don't Share Personal Info", content: "Never share passwords, addresses, or financial info." },
+                            { title: "Check Facts", content: "AI can make mistakes - verify important information." },
+                            { title: "Privacy Settings", content: "Review ChatGPT's data usage policy in settings." }
+                        ]
+                    }
+                ]
+            },
+            gemini: {
+                title: "Google Gemini Learning Course", 
+                intro: "Master Google's AI assistant - integrated with Gmail, Docs, and Search for smart answers anywhere.",
+                ai: true,
+                levels: [
+                    {
+                        id: "gemini-1",
+                        title: "Access Gemini",
+                        description: "Find and start using Google's AI assistant",
+                        points: 600,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "Web Access", content: "Go to <strong>gemini.google.com</strong>" },
+                            { title: "Google Account", content: "Sign in with your Gmail account" },
+                            { title: "Mobile", content: "Available in Google app or Assistant" },
+                            { title: "First Chat", content: `
+                                <strong>Try:</strong> "What's trending on YouTube today?"` }
+                        ]
+                    },
+                    {
+                        id: "gemini-2",
+                        title: "Google Integration",
+                        description: "Use Gemini with Gmail, Docs, and Search",
+                        points: 800,
+                        difficulty: "Medium",
+                        steps: [
+                            { title: "Gmail", content: "Ask 'Summarize my unread emails'" },
+                            { title: "Docs", content: "Generate content directly in Google Docs" },
+                            { title: "Search", content: "Gemini powers advanced Google searches" }
+                        ]
+                    }
+                ]
+            },
+            'meta-ai': {
+                title: "Meta AI Learning Course",
+                intro: "Learn Meta AI - Facebook and WhatsApp's built-in AI assistant for quick answers and image generation.",
+                ai: true,
+                levels: [
+                    {
+                        id: "meta-ai-1",
+                        title: "Find Meta AI",
+                        description: "Access Meta AI in Facebook, Instagram, and WhatsApp",
+                        points: 600,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "Facebook", content: "Search for <strong>@MetaAI</strong> or ask in Messenger" },
+                            { title: "WhatsApp", content: "Message <strong>meta.ai</strong> in WhatsApp" },
+                            { title: "Instagram", content: "Available in Direct Messages" },
+                            { title: "First Prompt", content: `
+                                <strong>Try:</strong> "Create a beach vacation image"` }
+                        ]
+                    },
+                    {
+                        id: "meta-ai-2",
+                        title: "Image Generation",
+                        description: "Create amazing AI images with Meta AI",
+                        points: 900,
+                        difficulty: "Medium",
+                        steps: [
+                            { title: "Image Prompts", content: `
+                                "A futuristic city at sunset in cyberpunk style"<br>
+                                "Portrait of a cat astronaut in space"` },
+                            { title: "Refine Images", content: "Ask 'Make it more colorful' or 'Add mountains'" },
+                            { title: "Share", content: "Download or share directly to Facebook/Instagram" }
+                        ]
+                    }
+                ]
+            }
+        };
+const translations = {
+
+   spanish: {
+    "Facebook Learning Course": "Curso de Facebook",
+
+    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
+    "Aprende a conectarte con amigos, compartir fotos y videos, enviar mensajes y explorar Facebook de forma segura.",
+
+    "Create & Register an Account": "Crear y Registrar una Cuenta",
+
+    "Learn how to create a Facebook account from scratch":
+    "Aprende cómo crear una cuenta de Facebook desde cero",
+
+    "Open Facebook": "Abrir Facebook",
+
+    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
+    "Abre la aplicación de Facebook en tu teléfono o visita <strong>facebook.com</strong> en tu computadora.",
+
+    "Click 'Create New Account'": "Haz clic en 'Crear Cuenta Nueva'",
+
+    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
+    "Busca el botón verde que dice <strong>'Crear Cuenta Nueva'</strong> y haz clic.",
+
+    "Enter Your Information": "Ingresa Tu Información",
+
+    "Click 'Sign Up'": "Haz clic en 'Registrarse'",
+
+    "Verify Your Account": "Verifica Tu Cuenta"
+},
+french: {
+    "Facebook Learning Course": "Cours de Facebook",
+
+    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
+    "Apprenez à vous connecter avec des amis, partager des photos et des vidéos, envoyer des messages et utiliser Facebook en toute sécurité et confiance.",
+
+    "Create & Register an Account": "Créer et enregistrer un compte",
+
+    "Learn how to create a Facebook account from scratch":
+    "Apprenez à créer un compte Facebook à partir de zéro",
+
+    "Open Facebook": "Ouvrir Facebook",
+
+    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
+    "Ouvrez l'application Facebook sur votre téléphone ou visitez <strong>facebook.com</strong> sur votre ordinateur.",
+
+    "Click 'Create New Account'": "Cliquez sur 'Créer un nouveau compte'",
+
+    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
+    "Recherchez le bouton vert qui indique <strong>'Créer un nouveau compte'</strong> et cliquez dessus.",
+
+    "Enter Your Information": "Entrez vos informations",
+
+    "Click 'Sign Up'": "Cliquez sur 'S'inscrire'",
+
+    "Verify Your Account": "Vérifiez votre compte"
+},
+bangla: {
+    "Facebook Learning Course": "ফেসবুক শেখার কোর্স",
+
+    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
+    "বন্ধুদের সাথে যুক্ত হওয়া, ছবি ও ভিডিও শেয়ার করা, বার্তা পাঠানো এবং নিরাপদভাবে ফেসবুক ব্যবহার করা শিখুন।",
+
+    "Create & Register an Account": "একটি অ্যাকাউন্ট তৈরি ও নিবন্ধন করুন",
+
+    "Learn how to create a Facebook account from scratch":
+    "শুরু থেকে কিভাবে ফেসবুক অ্যাকাউন্ট তৈরি করতে হয় শিখুন",
+
+    "Open Facebook": "ফেসবুক খুলুন",
+
+    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
+    "আপনার ফোনে ফেসবুক অ্যাপ খুলুন অথবা কম্পিউটারে <strong>facebook.com</strong> ভিজিট করুন।",
+
+    "Click 'Create New Account'": "'নতুন অ্যাকাউন্ট তৈরি করুন' এ ক্লিক করুন",
+
+    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
+    "<strong>'নতুন অ্যাকাউন্ট তৈরি করুন'</strong> লেখা সবুজ বাটনটি খুঁজে বের করে ক্লিক করুন।",
+
+    
+"Enter Your Information": "<strong>আপনার তথ্য দিন</strong>",
+
+"Your full name": "<strong>আপনার পূর্ণ নাম</strong>",
+"Email or phone number": "<strong>ইমেইল বা ফোন নম্বর</strong>",
+"Create a strong password (use letters, numbers, and symbols)": 
+    "<strong>একটি শক্তিশালী পাসওয়ার্ড তৈরি করুন</strong> (অক্ষর, সংখ্যা এবং প্রতীক ব্যবহার করুন)",
+"Your birthday": "<strong>আপনার জন্মদিন</strong>",
+"Your gender": "<strong>আপনার লিঙ্গ</strong>",
+
+    "Click 'Sign Up'": "'সাইন আপ' এ ক্লিক করুন",
+
+    "Verify Your Account": "আপনার অ্যাকাউন্ট যাচাই করুন"
+},
+arabic: {
+    "Facebook Learning Course": "دورة تعلم فيسبوك",
+
+    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
+    "تعلم كيفية التواصل مع الأصدقاء ومشاركة الصور والفيديوهات وإرسال الرسائل واستخدام فيسبوك بأمان وثقة.",
+
+    "Create & Register an Account": "إنشاء وتسجيل حساب",
+
+    "Learn how to create a Facebook account from scratch":
+    "تعلم كيفية إنشاء حساب فيسبوك من البداية",
+
+    "Open Facebook": "افتح فيسبوك",
+
+    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
+    "افتح تطبيق فيسبوك على هاتفك أو قم بزيارة <strong>facebook.com</strong> على جهاز الكمبيوتر.",
+
+    "Click 'Create New Account'": "اضغط على 'إنشاء حساب جديد'",
+
+    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
+    "ابحث عن الزر الأخضر الذي يقول <strong>'إنشاء حساب جديد'</strong> واضغط عليه.",
+
+    "Enter Your Information": "أدخل معلوماتك",
+
+    "Click 'Sign Up'": "اضغط على 'تسجيل'",
+
+    "Verify Your Account": "تحقق من حسابك"
+},
+chinese: {
+    "Facebook Learning Course": "Facebook 学习课程",
+
+    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
+    "学习如何与朋友联系、分享照片和视频、发送消息，并安全自信地使用 Facebook。",
+
+    "Create & Register an Account": "创建并注册账户",
+
+    "Learn how to create a Facebook account from scratch":
+    "学习如何从零开始创建 Facebook 账户",
+
+    "Open Facebook": "打开 Facebook",
+
+    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
+    "在手机上打开 Facebook 应用，或在电脑上访问 <strong>facebook.com</strong>。",
+
+    "Click 'Create New Account'": "点击“创建新账户”",
+
+    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
+    "找到写着 <strong>“创建新账户”</strong> 的绿色按钮并点击。",
+
+    "Enter Your Information": "填写你的信息",
+
+    "Click 'Sign Up'": "点击“注册”",
+
+    "Verify Your Account": "验证你的账户"
+}
+};
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProfile();
+            addPlatformListeners();
+        });
+        function selectLanguage(language) {
+
+    selectedLanguage = language;
+
+    document.getElementById('language-modal').style.display = 'none';
+
+    translatePlatform(selectedPlatform, language);
+
+    showCourse(selectedPlatform);
+}
+
+function closeLanguageModal() {
+    document.getElementById('language-modal').style.display = 'none';
+}
+
+function translatePlatform(platform, language) {
+
+    if (language === 'english') return;
+
+    const data = platforms[platform];
+
+    // Translate title
+    if (translations[language][data.title]) {
+        data.title = translations[language][data.title];
+    }
+
+    // Translate intro
+    if (translations[language][data.intro]) {
+        data.intro = translations[language][data.intro];
+    }
+
+    data.levels.forEach(level => {
+
+        if (translations[language][level.title]) {
+            level.title = translations[language][level.title];
+        }
+
+        if (translations[language][level.description]) {
+            level.description =
+                translations[language][level.description];
+        }
+
+        level.steps.forEach(step => {
+
+            if (translations[language][step.title]) {
+                step.title =
+                    translations[language][step.title];
+            }
+
+            if (translations[language][step.content]) {
+                step.content =
+                    translations[language][step.content];
+            }
+        });
+    });
+}
+        function showHome() {
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('course').style.display = 'none';
+        }
+
+        function showCourse(platform) {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('course').style.display = 'block';
+            
+            const data = platforms[platform];
+            document.getElementById('course-title').textContent = data.title;
+            document.getElementById('course-intro').textContent = data.intro;
+            document.getElementById('profile-section').style.display = 'block';
+            
+            currentPlatform = platform;
+            renderLevels(platform);
+        }
+
+       function addPlatformListeners() {
+    document.querySelectorAll('.platform-card').forEach(card => {
+        card.addEventListener('click', function() {
+
+            selectedPlatform = this.dataset.platform;
+
+            document.getElementById('language-modal').style.display = 'block';
+        });
+    });
+}
+
+        function renderLevels(platform) {
+            const data = platforms[platform];
+            const grid = document.getElementById('levels-grid');
+            grid.innerHTML = '';
+
+            data.levels.forEach((level, index) => {
+                const isUnlocked = userData.completedLessons[level.id] || index === 0 || userData.currentLevel > index;
+                const isCompleted = userData.completedLessons[level.id];
+                
+                const levelCard = document.createElement('div');
+                levelCard.className = `level-card ${data.ai ? 'ai-lesson' : ''} ${!isUnlocked ? 'locked' : ''}`;
+                levelCard.innerHTML = `
+                    <div class="level-number">${data.ai ? '🤖' : `Level ${index + 1}`}</div>
+                    <h3>${level.title}</h3>
+                    <p>${level.description}</p>
+                    <div class="points">${isCompleted ? '✅ Completed' : `+${level.points} Points`}</div>
+                    ${!isCompleted ? `<button class="start-lesson ${data.ai ? 'ai-lesson-btn' : ''}" onclick="startLesson('${platform}', ${index})">
+                        ${data.ai ? '🚀 Start AI Lesson' : 'Start Lesson'}
+                    </button>` : ''}
+                `;
+                grid.appendChild(levelCard);
+            });
+        }
+
+        let currentPlatform = '';
+        let currentStep = 0;
+        let currentLesson = null;
+
+        function startLesson(platform, levelIndex) {
+            const data = platforms[platform].levels[levelIndex];
+            showLesson(data);
+        }
+
+        function showLesson(lesson) {
+            currentLesson = lesson;
+            const modal = document.getElementById('lesson-modal');
+            const content = document.getElementById('lesson-content');
+            
+            content.innerHTML = `
+                <h2>${lesson.title}</h2>
+                <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0; font-style: italic;">
+                    ${platforms[currentPlatform].ai ? '🤖 AI Tip: Practice these steps with real AI!' : ''}
+                </div>
+                <div class="lesson-nav">
+                    <button class="nav-btn prev-btn" id="prev-btn" onclick="previousStep()" style="display: none;">Previous</button>
+                    <button class="nav-btn next-btn" id="next-btn" onclick="nextStep()">Next Step</button>
+                </div>
+                <div id="steps-container"></div>
+            `;
+            
+            renderSteps(lesson.steps);
+            currentStep = 0;
+            showStep(currentStep);
+            modal.style.display = 'block';
+        }
+
+        function renderSteps(steps) {
+            const container = document.getElementById('steps-container');
+            container.innerHTML = '';
+            steps.forEach((step, index) => {
+                const stepDiv = document.createElement('div');
+                stepDiv.className = 'lesson-step';
+                stepDiv.id = `step-${index}`;
+                stepDiv.innerHTML = `
+                    <h3><span class="step-number">${index + 1}</span> ${step.title}</h3>
+                    <div style="margin-top: 20px; font-size: 1.1rem; line-height: 1.7;">${step.content}</div>
+                `;
+                container.appendChild(stepDiv);
+            });
+        }
+
+        function showStep(stepIndex) {
+            document.querySelectorAll('.lesson-step').forEach((step, index) => {
+                step.classList.toggle('active', index === stepIndex);
+            });
+            
+            document.getElementById('prev-btn').style.display = stepIndex > 0 ? 'block' : 'none';
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.textContent = stepIndex === currentLesson.steps.length - 1 ? '🎉 Finish Lesson' : 'Next Step';
+            nextBtn.onclick = stepIndex === currentLesson.steps.length - 1 ? completeLesson : nextStep;
+            currentStep = stepIndex;
+        }
+
+        function nextStep() {
+            if (currentStep < currentLesson.steps.length - 1) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 0) {
+                showStep(currentStep - 1);
+            }
+        }
+
+        function completeLesson() {
+            closeLesson();
+            showReward(currentLesson);
+        }
+
+        function showReward(lesson) {
+            const isAI = platforms[currentPlatform].ai;
+            document.getElementById('reward-stars').innerHTML = isAI ? '🤖⭐⭐⭐⭐⭐' : '⭐⭐⭐⭐⭐';
+            document.getElementById('reward-message').textContent = `You successfully completed: "${lesson.title}"`;
+            document.getElementById('reward-points').textContent = lesson.points;
+            document.getElementById('unlocks').innerHTML = 
+                isAI ? 'Next AI Level Unlocked • 🤖 AI Beginner Badge!' : 'Next Level Unlocked • Beginner Badge Earned';
+            
+            // Update user data
+            userData.points += lesson.points;
+            userData.lessonsCompleted++;
+            userData.completedLessons[lesson.id] = true;
+            userData.currentLevel = Math.max(userData.currentLevel, 2);
+            if (isAI && !userData.badges.includes('ai-beginner')) {
+                userData.badges.push('ai-beginner');
+            }
+            
+            updateProfile();
+            document.getElementById('reward-modal').style.display = 'block';
+        }
+
+        function showRewardComplete() {
+            document.getElementById('reward-modal').style.display = 'none';
+            renderLevels(currentPlatform);
+        }
+
+        function closeLesson() {
+            document.getElementById('lesson-modal').style.display = 'none';
+        }
+
+        function updateProfile() {
+            document.getElementById('total-points').textContent = userData.points.toLocaleString();
+            document.getElementById('lessons-completed').textContent = userData.lessonsCompleted;
+            document.getElementById('current-level').textContent = userData.currentLevel;
+            document.getElementById('badges-earned').textContent = userData.badges.length;
+        }
+
+        // Modal close on outside click
+        window.onclick = function(event) {
+            const lessonModal = document.getElementById('lesson-modal');
+            const rewardModal = document.getElementById('reward-modal');
+            if (event.target === lessonModal) {
+                lessonModal.style.display = 'none';
+            }
+            if (event.target === rewardModal) {
+                rewardModal.style.display = 'none';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lesson-modal').style.display === 'block') {
+                if (e.key === 'ArrowRight') nextStep();
+                if (e.key === 'ArrowLeft') previousStep();
+                if (e.key === 'Escape') closeLesson();
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
