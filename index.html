@@ -26,7 +26,6 @@
             padding: 20px;
         }
 
-        /* Hero Section */
         .hero {
             text-align: center;
             padding: 80px 20px;
@@ -97,14 +96,12 @@
             height: 6px;
         }
 
-        /* Colorful Social Media Icons */
         .platform-icon {
             font-size: 4rem;
             margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
-        /* Facebook */
         .platform-card[data-platform="facebook"] .platform-icon {
             color: #1877F2;
             background: linear-gradient(135deg, rgba(24, 119, 242, 0.1), rgba(24, 119, 242, 0.05));
@@ -113,7 +110,6 @@
             display: inline-block;
         }
 
-        /* Instagram */
         .platform-card[data-platform="instagram"] .platform-icon {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             -webkit-background-clip: text;
@@ -124,7 +120,6 @@
             display: inline-block;
         }
 
-        /* TikTok */
         .platform-card[data-platform="tiktok"] .platform-icon {
             color: #FF0050;
             background: linear-gradient(135deg, rgba(255, 0, 80, 0.1), rgba(255, 0, 80, 0.05));
@@ -133,7 +128,6 @@
             display: inline-block;
         }
 
-        /* YouTube */
         .platform-card[data-platform="youtube"] .platform-icon {
             color: #FF0000;
             background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.05));
@@ -142,7 +136,6 @@
             display: inline-block;
         }
 
-        /* WhatsApp */
         .platform-card[data-platform="whatsapp"] .platform-icon {
             color: #25D366;
             background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05));
@@ -151,7 +144,6 @@
             display: inline-block;
         }
 
-        /* Messenger */
         .platform-card[data-platform="messenger"] .platform-icon {
             color: #0084FF;
             background: linear-gradient(135deg, rgba(0, 132, 255, 0.1), rgba(0, 132, 255, 0.05));
@@ -160,20 +152,23 @@
             display: inline-block;
         }
 
-        /* AI Icons (already have colors) */
-        .platform-card[data-platform="chatgpt"] .platform-icon {
-            color: #10a37f !important;
+        .platform-card[data-platform="chatgpt"] .platform-icon img {
+            width: 70px;
+            height: 70px;
         }
 
-        .platform-card[data-platform="gemini"] .platform-icon {
-            color: #4285f4 !important;
+        .platform-card[data-platform="gemini"] .platform-icon img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
         }
 
-        .platform-card[data-platform="meta-ai"] .platform-icon {
-            color: #00d4ff !important;
+        .platform-card[data-platform="meta-ai"] .platform-icon img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
         }
 
-        /* Hover effects for icons */
         .platform-card:hover .platform-icon {
             transform: scale(1.1) rotate(5deg);
         }
@@ -197,7 +192,6 @@
             color: #333;
         }
 
-        /* Course Section */
         .course-section {
             display: none;
             animation: fadeIn 0.5s ease-in;
@@ -333,7 +327,32 @@
             box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
         }
 
-        /* Lesson Modal */
+        /* NEW IMAGE STYLES */
+        .lesson-image {
+            width: auto;
+            max-width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin: 20px auto;
+            display: block;
+            border: 4px solid #f0f0f0;
+        }
+
+        .lesson-icon {
+            font-size: 4rem;
+            margin: 20px auto;
+            display: block;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -352,7 +371,7 @@
             padding: 40px;
             border-radius: 20px;
             max-width: 900px;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             position: relative;
             animation: modalSlideIn 0.3s ease;
@@ -443,7 +462,6 @@
             color: white;
         }
 
-           /* Reward Modal */
         .reward-modal {
             text-align: center;
             padding: 60px 40px;
@@ -460,7 +478,6 @@
             to { transform: translateY(-10px); }
         }
 
-        /* Profile Section */
         .profile-section {
             background: white;
             border-radius: 20px;
@@ -490,31 +507,27 @@
             margin-bottom: 10px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .platforms-grid { grid-template-columns: 1fr; }
             .levels-grid { grid-template-columns: 1fr; }
             .modal-content { margin: 10% 20px; padding: 30px 20px; }
+            .lesson-image { height: 200px; }
         }
 
-        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
+            <img src="logo app.jpeg" alt="My Logo" style="height: 250px; display: circular; margin: 0 auto;">
             <h1>Welcome to <span style="color: #ffd700;">Learn How to Use Social Media & AI</span></h1>
-            <p class="subtitle">Learn step-by-step how to use today's most popular social media apps and AI chatbots in a simple and easy way.</p>
-            <p class="description">Whether you are a beginner or just want to improve your digital skills, this learning platform will guide you through everything you need to know — from creating an account to using AI chatbots safely and confidently.</p>
-            <p style="font-size: 1.3rem; margin-bottom: 50px;"><strong>Main Goal:</strong> Choose a platform below and start learning through interactive lessons, levels, and rewards.</p>
+            <p style="font-size: 1.3rem; margin-bottom: 50px;"><strong>Main Goal:</strong> Choose a platform below and start learning through interactive lessons with images!</p>
             
             <div class="platforms-grid">
-                <!-- Social Media Platforms -->
                 <div class="platform-card" data-platform="facebook">
                     <div class="platform-icon"><i class="fab fa-facebook-f"></i></div>
                     <h3>Facebook</h3>
@@ -539,52 +552,31 @@
                     <div class="platform-icon"><i class="fab fa-facebook-messenger"></i></div>
                     <h3>Messenger</h3>
                 </div>
-
-                <!-- AI Platforms - New Section! -->
                 <div class="platform-card ai-card" data-platform="chatgpt">
-    <div class="ai-badge">🤖 AI</div>
-    
-    <div class="platform-icon">
-        <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
-            alt="ChatGPT Logo"
-            style="width: 70px; height: 70px;"
-        />
-    </div>
-
-    <h3>ChatGPT</h3>
-</div>
-               <div class="platform-card ai-card" data-platform="gemini">
-    <div class="ai-badge">🤖 AI</div>
-
-    <div class="platform-icon">
-        <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg"
-            alt="Gemini Logo"
-            style="width: 90px; height: 90px; object-fit: contain;"
-        />
-    </div>
-
-    <h3>Gemini</h3>
-</div>
-               <div class="platform-card ai-card" data-platform="meta-ai">
-    <div class="ai-badge">🤖 AI</div>
-
-    <div class="platform-icon">
-        <img 
-            src="download.jpeg" 
-            alt="Meta AI Logo"
-            style="width: 70px; height: 70px; object-fit: contain;"
-        />
-    </div>
-
-    <h3>Meta AI</h3>
-</div>
+                    <div class="ai-badge">🤖 AI</div>
+                    <div class="platform-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT"/>
+                    </div>
+                    <h3>ChatGPT</h3>
+                </div>
+                <div class="platform-card ai-card" data-platform="gemini">
+                    <div class="ai-badge">🤖 AI</div>
+                    <div class="platform-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini"/>
+                    </div>
+                    <h3>Gemini</h3>
+                </div>
+                <div class="platform-card ai-card" data-platform="meta-ai">
+                    <div class="ai-badge">🤖 AI</div>
+                    <div class="platform-icon">
+                        <img src="https://about.fb.com/wp-content/uploads/2024/04/Meta-AI_Logo_Blue.png?w=640" alt="Meta AI"/>
+                    </div>
+                    <h3>Meta AI</h3>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Course Section -->
     <section id="course" class="container course-section">
         <button class="back-btn" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Home</button>
         
@@ -617,42 +609,33 @@
         <div class="levels-grid" id="levels-grid"></div>
     </section>
 
-    <!-- Lesson Modal -->
     <div id="lesson-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeLesson()">&times;</span>
             <div id="lesson-content"></div>
         </div>
     </div>
+
     <div id="language-modal" class="modal">
-    <div class="modal-content" style="text-align:center;">
-        <span class="close" onclick="closeLanguageModal()">&times;</span>
-
-        <h2>Select Your Language</h2>
-
-        <button class="start-lesson" onclick="selectLanguage('english')">English</button>
-
-        <button class="start-lesson" onclick="selectLanguage('spanish')">Spanish</button>
-
-        <button class="start-lesson" onclick="selectLanguage('french')">French</button>
-
-        <button class="start-lesson" onclick="selectLanguage('bangla')">Bangla</button>
-
-        <button class="start-lesson" onclick="selectLanguage('arabic')">Arabic</button>
-
-        <button class="start-lesson" onclick="selectLanguage('chinese')">Chinese</button>
+        <div class="modal-content" style="text-align:center;">
+            <span class="close" onclick="closeLanguageModal()">&times;</span>
+            <h2>Select Your Language</h2>
+            <button class="start-lesson" onclick="selectLanguage('english')">🇺🇸 English</button>
+            <button class="start-lesson" onclick="selectLanguage('spanish')">🇪🇸 Spanish</button>
+            <button class="start-lesson" onclick="selectLanguage('french')">🇫🇷 French</button>
+            <button class="start-lesson" onclick="selectLanguage('bangla')">🇧🇩 Bangla</button>
+            <button class="start-lesson" onclick="selectLanguage('arabic')">🇸🇦 Arabic</button>
+            <button class="start-lesson" onclick="selectLanguage('chinese')">🇨🇳 Chinese</button>
+        </div>
     </div>
-</div>
 
-
-    <!-- Reward Modal -->
     <div id="reward-modal" class="modal">
         <div class="modal-content reward-modal">
             <div class="stars" id="reward-stars">⭐⭐⭐⭐⭐</div>
             <h2>Congratulations!</h2>
             <p id="reward-message"></p>
             <div style="font-size: 1.5rem; color: #28a745; margin: 20px 0;">
-                <div>+<span id="reward-points">500</span> Points</div>
+                <div>+<span id="reward-points">100</span> Points</div>
             </div>
             <p style="margin: 20px 0; font-size: 1.2rem;">
                 <strong id="unlocks"></strong>
@@ -665,9 +648,12 @@
     </div>
 
     <script>
-        // Game State
         let selectedLanguage = 'english';
-let selectedPlatform = '';
+        let selectedPlatform = '';
+        let currentPlatform = '';
+        let currentStep = 0;
+        let currentLesson = null;
+
         let userData = {
             points: 0,
             lessonsCompleted: 0,
@@ -676,9 +662,7 @@ let selectedPlatform = '';
             completedLessons: {}
         };
 
-        // Updated Platforms Data with AI!
         const platforms = {
-            // Social Media Platforms
             facebook: {
                 title: "Facebook Learning Course",
                 intro: "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.",
@@ -687,55 +671,272 @@ let selectedPlatform = '';
                         id: "facebook-1",
                         title: "Create & Register an Account",
                         description: "Learn how to create a Facebook account from scratch",
-                        points: 500,
+                        points: 100,
                         difficulty: "Easy",
                         steps: [
-                            { title: "Open Facebook", content: "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer." },
-                            { title: "Click 'Create New Account'", content: "Look for the green button that says <strong>'Create New Account'</strong> and click it." },
-                            { title: "Enter Your Information", content: `
-                                <ul>
-                                    <li><strong>Your full name</strong></li>
-                                    <li><strong>Email or phone number</strong></li>
-                                    <li><strong>Create a strong password</strong> (use letters, numbers, and symbols)</li>
-                                    <li><strong>Your birthday</strong></li>
-                                    <li><strong>Your gender</strong></li>
-                                </ul>` },
-                            { title: "Click 'Sign Up'", content: "Review your information and click the green <strong>'Sign Up'</strong> button." },
-                            { title: "Verify Your Account", content: "Check your email or phone for a verification code from Facebook and enter it to complete registration." }
+                            { 
+                                title: "1. Open Facebook", 
+                                content: "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.",
+                                image: "https://cdn-icons-png.flaticon.com/512/124/124010.png",
+                                icon: "📱"
+                            },
+                            { 
+                                title: "2. Click 'Create New Account'", 
+                                content: "Look for the white button that says <strong>'Create New Account'</strong> and click it.",
+                                image: "https://www.wikihow.com/images/thumb/b/bc/Set-up-a-Facebook-Account-Step-2-Version-5.jpg/v4-460px-Set-up-a-Facebook-Account-Step-2-Version-5.jpg",
+                                icon: "🟢"
+                            },
+                            { 
+                                title: "3. Enter Your Information", 
+                                content: `
+                                    <ul>
+                                        <li><strong>Your full name</strong></li>
+                                        <li><strong>Email or phone number</strong></li>
+                                        <li><strong>Create a strong password</strong></li>
+                                        <li><strong>Your birthday</strong></li>
+                                        <li><strong>Your gender</strong></li>
+                                    </ul>`,
+                                image: "https://53.fs1.hubspotusercontent-na1.net/hubfs/53/how-to-use-facebook-2-20241004-3378231.webp",
+                                icon: "✏️"
+                            },
+                            { 
+                                title: "4. Click 'Sign Up'", 
+                                content: "Review your information and click the green <strong>'Sign Up'</strong> button.",
+                                image: "data:image/png;base64,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",
+                                icon: "✅"
+                            },
+                            { 
+                                title: "5. Verify Your Account", 
+                                content: "Check your email or phone for a verification code from Facebook and enter it.",
+                                image: "data:image/jpeg;base64,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",
+                                image:"https://www.hollyland.com/wp-content/uploads/2023/11/image-60-1024x969.png",
+                                icon: "📧"
+                            }
                         ]
                     },
                     {
                         id: "facebook-2",
                         title: "Logging Into Your Account",
                         description: "Learn how to log in safely and recover your password",
-                        points: 500,
+                        points: 100,
                         difficulty: "Easy",
                         steps: [
-                            { title: "Enter Login Details", content: "Use your email/phone and password to log in." },
-                            { title: "Forgot Password?", content: "Click 'Forgot Password?' and follow the steps to reset it via email or phone." },
-                            { title: "Stay Safe", content: "Don't save password on public computers. Use two-factor authentication when available." }
+                            { 
+                                title: "1. Enter Login Details", 
+                                content: "Use your email/phone and password to log in.",
+                                image: "https://cdn-icons-png.flaticon.com/512/3224/3224794.png",
+                                icon: "🔑"
+                            },
+                            { 
+                                title: "2. Forgot Password?", 
+                                content: "Click 'Forgot Password?' and follow the steps to reset it.",
+                                image: "https://cdn-icons-png.flaticon.com/512/1081/1081675.png",
+                                icon: "🔒"
+                            },
+                            { 
+                                title: "3. Stay Safe", 
+                                content: "Don't save password on public computers. Use two-factor authentication.",
+                                image: "https://cdn-icons-png.flaticon.com/512/10421/10421544.png",
+                                icon: "🛡️"
+                            }
+                            
                         ]
-                    }
+                    },
+                    {
+                        id: "facebook-3",
+                        title: "Facebook Feed & Home Page",
+                        description: "Learn how to use your Facebook home feed",
+                        points: 100,
+                        difficulty: "Easy",
+                        steps: [
+                            {
+                                title: "1. Open Home Feed 🏠",
+                                content: `
+                                    <p>When you open Facebook, look for the house icon 🏠.</p>
+                                    <p>Tap it to open your Home Feed.</p>
+                                `,
+                                image: "https://cdn-icons-png.flaticon.com/512/1946/1946436.png",
+                                icon: "🏠"
+                            },
+                        {
+                            title: "2. See Posts",
+                            content: `
+                                <p>You will see posts from friends and pages.</p>
+                                <p>Scroll down to see more.</p>
+                            `,
+                            image: "https://cdn-icons-png.flaticon.com/512/1828/1828859.png",
+                            icon: "📜"
+                        },
+                        {
+                            title: "3. Like & Comment",
+                            content: `
+                                <p>Tap 👍 to like a post.</p>
+                                <p>Tap 💬 to comment.</p>
+                            `,
+                            image: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
+                            icon: "👍"
+                        }
+                    ]
+                },
+                {
+                    id: "facebook-4",
+                    title: "Facebook Reels",
+                    description: "Watch and enjoy short videos on Facebook",
+                    points: 100,
+                    difficulty: "Easy",
+                    steps: [
+                        {
+                            title: "1. Open Reels 🎬",
+                            content: `
+                                <p>Tap the Reels icon ▶️ or 🎬 button.</p>
+                            `,
+            image: "https://cdn-icons-png.flaticon.com/512/1179/1179069.png",
+            icon: "🎬"
+        },
+        {
+            title: "2. Watch Videos",
+            content: `
+                <p>Watch short videos one by one.</p>
+                <p>Swipe up for next video.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/727/727245.png",
+            icon: "📱"
+        },
+        {
+            title: "3. React",
+            content: `
+                <p>Tap ❤️ if you like it.</p>
+                <p>Tap ➡️ to share.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/786/786205.png",
+            icon: "❤️"
+        }
+    ]
+},
+{
+    id: "facebook-5",
+    title: "Your Profile",
+    description: "Learn how to use your Facebook profile",
+    points: 100,
+    difficulty: "Medium",
+    steps: [
+        {
+            title: "1. Open Profile 👤",
+            content: `
+                <p>Tap your profile picture or 👤 icon.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/847/847969.png",
+            icon: "👤"
+        },
+        {
+            title: "2. View Profile",
+            content: `
+                <p>You can see your name, photos, and posts.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+            icon: "📄"
+        }
+    ]
+},
+{
+    id: "facebook-6",
+    title: "Create a Post",
+    description: "Learn how to post on Facebook",
+    points: 100,
+    difficulty: "Medium",
+    steps: [
+        {
+            title: "1. Start Post ✍️",
+            content: `
+                <p>Tap “What’s on your mind?”</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/1828/1828919.png",
+            icon: "✍️"
+        },
+        {
+            title: "2. Add Content",
+            content: `
+                <p>Write text or add a photo 📷.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/3031/3031121.png",
+            icon: "📷"
+        },
+        {
+            title: "3. Post It",
+            content: `
+                <p>Tap Post button to share.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/845/845646.png",
+            icon: "🚀"
+        }
+    ]
+},
+{
+    id: "facebook-7",
+    title: "Stay Safe Online",
+    description: "Learn Facebook cybersecurity basics",
+    points: 100,
+    difficulty: "Hard",
+    steps: [
+        {
+            title: "1. Be Careful 🛡️",
+            content: `
+                <p>Don’t click unknown links.</p>
+                <p>Don’t trust strangers.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/10421/10421544.png",
+            icon: "🛡️"
+        },
+        {
+            title: "2. Protect Password 🔒",
+            content: `
+                <p>Never share your password.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/3064/3064155.png",
+            icon: "🔒"
+        },
+        {
+            title: "3. Block Users 🚫",
+            content: `
+                <p>Tap (...) → Block if needed.</p>
+            `,
+            image: "https://cdn-icons-png.flaticon.com/512/1828/1828843.png",
+            icon: "🚫"
+        }
+    ]
+}
                 ]
             },
             instagram: {
                 title: "Instagram Learning Course",
                 intro: "Master Instagram - stories, reels, and connecting with friends.",
                 levels: [
-                    { id: "instagram-1", title: "Create Instagram Account", description: "Set up your Instagram profile", points: 500, difficulty: "Easy", steps: [
-                        { title: "Download App", content: "Get Instagram from App Store or Google Play" },
-                        { title: "Sign Up", content: "Use email, phone, or Facebook to create account" },
-                        { title: "Set Profile", content: "Add photo, bio, and username" }
-                    ]},
-                    { id: "instagram-2", title: "Follow Friends", description: "Find and follow people you know", points: 700, difficulty: "Medium", steps: [
-                        { title: "Search", content: "Use search icon to find friends" },
-                        { title: "Follow", content: "Tap 'Follow' button on profiles" },
-                        { title: "Explore", content: "Check Explore page for interests" }
-                    ]}
+                    { 
+                        id: "instagram-1", 
+                        title: "Create Instagram Account", 
+                        description: "Set up your Instagram profile", 
+                        points: 100, 
+                        difficulty: "Easy", 
+                        steps: [
+                            { title: "1. Download App", content: "Get Instagram from App Store or Google Play", image: "https://cdn-icons-png.flaticon.com/512/888/888115.png", icon: "📲" },
+                            { title: "2. Sign Up", content: "Use email, phone, or Facebook to create account", image: "https://cdn-icons-png.flaticon.com/512/3524/3524659.png", icon: "📝" },
+                            { title: "3. Set Profile", content: "Add photo, bio, and username", image: "https://cdn-icons-png.flaticon.com/512/847/847969.png", icon: "👤" }
+                        ]
+                    },
+                    { 
+                        id: "instagram-2", 
+                        title: "Follow Friends", 
+                        description: "Find and follow people you know", 
+                        points: 100, 
+                        difficulty: "Medium", 
+                        steps: [
+                            { title: "1. Search", content: "Use search icon to find friends", image: "https://cdn-icons-png.flaticon.com/512/482/482631.png", icon: "🔍" },
+                            { title: "2. Follow", content: "Tap 'Follow' button on profiles", image: "https://img.icons8.com/color/512/plus-math.png", icon: "➕" },
+                            { title: "3. Explore", content: "Check Explore page for interests", image: "https://cdn-icons-png.flaticon.com/512/1087/1087815.png", icon: "🌟" }
+                        ]
+                    }
                 ]
             },
-
-            // NEW AI Platforms!
             chatgpt: {
                 title: "ChatGPT Learning Course",
                 intro: "Learn to use ChatGPT - the world's most popular AI chatbot for asking questions, getting help, and creating content safely.",
@@ -745,55 +946,78 @@ let selectedPlatform = '';
                         id: "chatgpt-1",
                         title: "Getting Started with ChatGPT",
                         description: "Create account and ask your first question",
-                        points: 600,
+                        points: 100,
                         difficulty: "Easy",
                         steps: [
-                            { title: "Visit ChatGPT", content: "Go to <strong>chat.openai.com</strong> or download the mobile app." },
-                            { title: "Sign Up", content: `
-                                <ul>
-                                    <li>Click <strong>'Sign up'</strong></li>
-                                    <li>Use email, Google, or Microsoft account</li>
-                                    <li>Verify your email</li>
-                                </ul>` },
-                            { title: "Ask First Question", content: `
-                                <strong>Try this:</strong><br>
-                                <em>"Explain machine learning in simple terms"</em><br><br>
-                                Type in the chat box and press Enter!` },
-                            { title: "Chat History", content: "Your conversations are saved on the left sidebar." }
+                            { 
+                                title: "1. Visit ChatGPT", 
+                                content: "Go to <strong>chat.openai.com</strong> or download the mobile app.",
+                                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/512px-ChatGPT_logo.svg.png",
+                                icon: "🌐"
+                            },
+                            { 
+                                title: "2. Sign Up", 
+                                content: `<ul><li>Click <strong>'Sign up'</strong></li><li>Use email, Google, or Microsoft account</li><li>Verify your email</li></ul>`,
+                                image: "https://cdn-icons-png.flaticon.com/512/3524/3524659.png",
+                                icon: "📧"
+                            },
+                            { 
+                                title: "3. Ask First Question", 
+                                content: `<strong>Try this:</strong><br><em>"Explain machine learning in simple terms"</em><br><br>Type in the chat box and press Enter!`,
+                                image: "https://cdn-icons-png.flaticon.com/512/616/616487.png",
+                                icon: "💬"
+                            },
+                            { 
+                                title: "4. Chat History", 
+                                content: "Your conversations are saved on the left sidebar.",
+                                image: "https://cdn-icons-png.flaticon.com/512/24/24094.png",
+                                icon: "📚"
+                            }
                         ]
                     },
                     {
                         id: "chatgpt-2",
                         title: "Best Prompts & Tips",
                         description: "Learn how to ask better questions for better answers",
-                        points: 800,
+                        points: 100,
                         difficulty: "Medium",
                         steps: [
-                            { title: "Be Specific", content: `
-                                <strong>Bad:</strong> "Tell me about dogs"<br>
-                                <strong>Good:</strong> "Explain 5 popular dog breeds for apartments with pros and cons"` },
-                            { title: "Use Roles", content: `
-                                "Act as a teacher and explain..."<br>
-                                "Pretend you're a chef and give me..."` },
-                            { title: "Ask Follow-ups", content: "Continue the conversation naturally like talking to a friend!" }
+                            { 
+                                title: "1. Be Specific", 
+                                content: `<strong>Bad:</strong> "Tell me about dogs"<br><strong>Good:</strong> "Explain 5 popular dog breeds for apartments with pros and cons"`,
+                                image: "https://cdn-icons-png.flaticon.com/512/2898/2898219.png",
+                                icon: "🎯"
+                            },
+                            { 
+                                title: "2. Use Roles", 
+                                content: `"Act as a teacher and explain..."<br>"Pretend you're a chef and give me..."`,
+                                image: "https://cdn-icons-png.flaticon.com/512/2932/2932560.png",
+                                icon: "🎭"
+                            },
+                            { 
+                                title: "3. Ask Follow-ups", 
+                                content: "Continue the conversation naturally like talking to a friend!",
+                                image: "https://cdn-icons-png.flaticon.com/512/616/616487.png",
+                                icon: "🗣️"
+                            }
                         ]
                     },
                     {
                         id: "chatgpt-3",
                         title: "ChatGPT Safety",
                         description: "Use AI responsibly and protect your privacy",
-                        points: 1000,
+                        points: 100,
                         difficulty: "Hard",
                         steps: [
-                            { title: "Don't Share Personal Info", content: "Never share passwords, addresses, or financial info." },
-                            { title: "Check Facts", content: "AI can make mistakes - verify important information." },
-                            { title: "Privacy Settings", content: "Review ChatGPT's data usage policy in settings." }
+                            { title: "1. Don't Share Personal Info", content: "Never share passwords, addresses, or financial info.", image: "https://cdn-icons-png.flaticon.com/512/10421/10421544.png", icon: "🚫" },
+                            { title: "2. Check Facts", content: "AI can make mistakes - verify important information.", image: "https://cdn-icons-png.flaticon.com/512/2729/2729861.png", icon: "🔍" },
+                            { title: "3. Privacy Settings", content: "Review ChatGPT's data usage policy in settings.", image: "https://cdn-icons-png.flaticon.com/512/1081/1081675.png", icon: "🔒" }
                         ]
                     }
                 ]
             },
             gemini: {
-                title: "Google Gemini Learning Course", 
+                title: "Google Gemini Learning Course",
                 intro: "Master Google's AI assistant - integrated with Gmail, Docs, and Search for smart answers anywhere.",
                 ai: true,
                 levels: [
@@ -801,26 +1025,25 @@ let selectedPlatform = '';
                         id: "gemini-1",
                         title: "Access Gemini",
                         description: "Find and start using Google's AI assistant",
-                        points: 600,
+                        points: 100,
                         difficulty: "Easy",
                         steps: [
-                            { title: "Web Access", content: "Go to <strong>gemini.google.com</strong>" },
-                            { title: "Google Account", content: "Sign in with your Gmail account" },
-                            { title: "Mobile", content: "Available in Google app or Assistant" },
-                            { title: "First Chat", content: `
-                                <strong>Try:</strong> "What's trending on YouTube today?"` }
+                            { title: "1. Web Access", content: "Go to <strong>gemini.google.com</strong>", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/512px-Google_Gemini_logo.svg.png", icon: "🌐" },
+                            { title: "2. Google Account", content: "Sign in with your Gmail account", image: "https://cdn-icons-png.flaticon.com/512/3224/3224794.png", icon: "📧" },
+                            { title: "3. Mobile", content: "Available in Google app or Assistant", image: "https://cdn-icons-png.flaticon.com/512/733/733546.png", icon: "📱" },
+                            { title: "4. First Chat", content: `<strong>Try:</strong> "What's trending on YouTube today?"`, image: "https://cdn-icons-png.flaticon.com/512/616/616487.png", icon: "💬" }
                         ]
                     },
                     {
                         id: "gemini-2",
                         title: "Google Integration",
                         description: "Use Gemini with Gmail, Docs, and Search",
-                        points: 800,
+                        points: 100,
                         difficulty: "Medium",
                         steps: [
-                            { title: "Gmail", content: "Ask 'Summarize my unread emails'" },
-                            { title: "Docs", content: "Generate content directly in Google Docs" },
-                            { title: "Search", content: "Gemini powers advanced Google searches" }
+                            { title: "1. Gmail", content: "Ask 'Summarize my unread emails'", image: "https://cdn-icons-png.flaticon.com/512/3261/3261370.png", icon: "📧" },
+                            { title: "2. Docs", content: "Generate content directly in Google Docs", image: "https://cdn-icons-png.flaticon.com/512/482/482735.png", icon: "📄" },
+                            { title: "3. Search", content: "Gemini powers advanced Google searches", image: "https://cdn-icons-png.flaticon.com/512/482/482631.png", icon: "🔍" }
                         ]
                     }
                 ]
@@ -834,241 +1057,390 @@ let selectedPlatform = '';
                         id: "meta-ai-1",
                         title: "Find Meta AI",
                         description: "Access Meta AI in Facebook, Instagram, and WhatsApp",
-                        points: 600,
+                        points: 100,
                         difficulty: "Easy",
                         steps: [
-                            { title: "Facebook", content: "Search for <strong>@MetaAI</strong> or ask in Messenger" },
-                            { title: "WhatsApp", content: "Message <strong>meta.ai</strong> in WhatsApp" },
-                            { title: "Instagram", content: "Available in Direct Messages" },
-                            { title: "First Prompt", content: `
-                                <strong>Try:</strong> "Create a beach vacation image"` }
+                            { title: "1. Facebook", content: "Search for <strong>@MetaAI</strong> or ask in Messenger", image: "https://cdn-icons-png.flaticon.com/512/124/124010.png", icon: "📘" },
+                            { title: "2. WhatsApp", content: "Message <strong>meta.ai</strong> in WhatsApp", image: "https://cdn-icons-png.flaticon.com/512/5968/5968898.png", icon: "💬" },
+                            { title: "3. Instagram", content: "Available in Direct Messages", image: "https://cdn-icons-png.flaticon.com/512/847/847969.png", icon: "📷" },
+                            { title: "4. First Prompt", content: `<strong>Try:</strong> "Create a beach vacation image"`, image: "https://cdn-icons-png.flaticon.com/512/472/472140.png", icon: "🖼️" }
                         ]
                     },
                     {
                         id: "meta-ai-2",
                         title: "Image Generation",
                         description: "Create amazing AI images with Meta AI",
-                        points: 900,
+                        points: 100,
                         difficulty: "Medium",
                         steps: [
-                            { title: "Image Prompts", content: `
-                                "A futuristic city at sunset in cyberpunk style"<br>
-                                "Portrait of a cat astronaut in space"` },
-                            { title: "Refine Images", content: "Ask 'Make it more colorful' or 'Add mountains'" },
-                            { title: "Share", content: "Download or share directly to Facebook/Instagram" }
+                            { title: "1. Image Prompts", content: `"A futuristic city at sunset in cyberpunk style"<br>"Portrait of a cat astronaut in space"`, image: "https://cdn-icons-png.flaticon.com/512/472/472140.png", icon: "🎨" },
+                            { title: "2. Refine Images", content: "Ask 'Make it more colorful' or 'Add mountains'", image: "https://cdn-icons-png.flaticon.com/512/2898/2898219.png", icon: "✨" },
+                            { title: "3. Share", content: "Download or share directly to Facebook/Instagram", image: "https://cdn-icons-png.flaticon.com/512/3524/3524659.png", icon: "📤" }
+                        ]
+                    }
+                ]
+            },
+            tiktok: {
+                title: "TikTok Learning Course",
+                intro: "Learn to create viral videos and follow trends on TikTok.",
+                levels: [
+                    {
+                        id: "tiktok-1",
+                        title: "Create TikTok Account",
+                        description: "Set up your TikTok profile and start creating",
+                        points: 100,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "1. Download TikTok", content: "Get TikTok from App Store or Google Play", image: "https://cdn-icons-png.flaticon.com/512/888/888115.png", icon: "📱" },
+                            { title: "2. Sign Up", content: "Use phone, email, or social login", image: "https://cdn-icons-png.flaticon.com/512/3524/3524659.png", icon: "📝" },
+                            { title: "3. Create First Video", content: "Tap + button and record your first video", image: "https://img.icons8.com/color/512/video.png", icon: "🎥" }
+                        ]
+                    }
+                ]
+            },
+            youtube: {
+                title: "YouTube Learning Course",
+                intro: "Learn to watch, subscribe, and create YouTube videos.",
+                levels: [
+                    {
+                        id: "youtube-1",
+                        title: "Getting Started with YouTube",
+                        description: "Create account and find videos you love",
+                        points: 100,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "1. Open YouTube", content: "Open YouTube app or visit youtube.com", image: "https://cdn-icons-png.flaticon.com/512/124/124010.png", icon: "📺" },
+                            { title: "2. Sign In", content: "Use Google account to sign in", image: "https://cdn-icons-png.flaticon.com/512/3224/3224794.png", icon: "🔑" },
+                            { title: "3. Subscribe", content: "Tap Subscribe button on channels you like", image: "https://img.icons8.com/color/512/plus-math.png", icon: "🔔" }
+                        ]
+                    }
+                ]
+            },
+            whatsapp: {
+                title: "WhatsApp Learning Course",
+                intro: "Master WhatsApp messaging, groups, and calls.",
+                levels: [
+                    {
+                        id: "whatsapp-1",
+                        title: "Set Up WhatsApp",
+                        description: "Install and verify WhatsApp on your phone",
+                        points: 100,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "1. Download WhatsApp", content: "Get from App Store or Google Play", image: "https://cdn-icons-png.flaticon.com/512/888/888115.png", icon: "📱" },
+                            { title: "2. Verify Phone", content: "Enter your phone number and verify with SMS", image: "https://cdn-icons-png.flaticon.com/512/1183/1183618.png", icon: "📱" },
+                            { title: "3. Add Contacts", content: "Your phone contacts will appear automatically", image: "https://cdn-icons-png.flaticon.com/512/847/847969.png", icon: "👥" }
+                        ]
+                    }
+                ]
+            },
+            messenger: {
+                title: "Messenger Learning Course",
+                intro: "Learn Facebook Messenger for chatting with friends.",
+                levels: [
+                    {
+                        id: "messenger-1",
+                        title: "Start Chatting",
+                        description: "Open Messenger and send your first message",
+                        points: 100,
+                        difficulty: "Easy",
+                        steps: [
+                            { title: "1. Open Messenger", content: "Download Messenger app or use Facebook", image: "https://cdn-icons-png.flaticon.com/512/124/124010.png", icon: "💬" },
+                            { title: "2. Find Friends", content: "Search for friends from Facebook", image: "https://cdn-icons-png.flaticon.com/512/482/482631.png", icon: "🔍" },
+                            { title: "3. Send Message", content: "Tap on friend and type your message", image: "https://cdn-icons-png.flaticon.com/512/616/616487.png", icon: "📝" }
                         ]
                     }
                 ]
             }
         };
-const translations = {
 
-   spanish: {
-    "Facebook Learning Course": "Curso de Facebook",
+       const translations = {
+            spanish: {
 
-    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
-    "Aprende a conectarte con amigos, compartir fotos y videos, enviar mensajes y explorar Facebook de forma segura.",
+                // COURSE
+                "Facebook Learning Course": "Curso de Aprendizaje de Facebook",
+                "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
+                "Aprende a conectarte con amigos, compartir fotos y videos, enviar mensajes y explorar Facebook de forma segura.",
+                
+                "Create & Register an Account": "Crear y Registrar una Cuenta",
+                "Learn how to create a Facebook account from scratch":
+                "Aprende a crear una cuenta de Facebook desde cero",
 
-    "Create & Register an Account": "Crear y Registrar una Cuenta",
+                "1. Open Facebook": "1. Abrir Facebook",
+                "2. Click 'Create New Account'": "2. Haz clic en 'Crear Nueva Cuenta'",
+                "3. Enter Your Information": "3. Introduce Tu Información",
+                "4. Click 'Sign Up'": "4. Haz clic en 'Registrarse'",
+                "5. Verify Your Account": "5. Verifica Tu Cuenta",
 
-    "Learn how to create a Facebook account from scratch":
-    "Aprende cómo crear una cuenta de Facebook desde cero",
 
-    "Open Facebook": "Abrir Facebook",
+                
+                "Create & Register an Account": "Crear y Registrar una Cuenta",
+                "Learn how to create a Facebook account from scratch":
+                "Aprende a crear una cuenta de Facebook desde cero",
 
-    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
-    "Abre la aplicación de Facebook en tu teléfono o visita <strong>facebook.com</strong> en tu computadora.",
+              
+                "Logging Into Your Account": "Iniciar Sesión en Tu Cuenta",
+                "Learn how to log in safely and recover your password":
+                "Aprende a iniciar sesión de forma segura y recuperar tu contraseña",
 
-    "Click 'Create New Account'": "Haz clic en 'Crear Cuenta Nueva'",
+                "1. Enter Login Details": "1. Introducir Datos de Inicio",
+                "2. Forgot Password?": "2. ¿Olvidaste tu Contraseña?",
+                "3. Stay Safe": "3. Mantente Seguro",
 
-    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
-    "Busca el botón verde que dice <strong>'Crear Cuenta Nueva'</strong> y haz clic.",
+               
+                "Facebook Feed & Home Page": "Inicio y Página Principal de Facebook",
+                "Learn how to use the Facebook home feed":
+                "Aprende a usar el feed principal de Facebook",
 
-    "Enter Your Information": "Ingresa Tu Información",
+                "1. Open Home Feed 🏠": "1. Abrir Inicio 🏠",
+                "2. View Posts": "2. Ver Publicaciones",
+                "3. Like & Comment": "3. Me Gusta y Comentarios",
 
-    "Click 'Sign Up'": "Haz clic en 'Registrarse'",
+              
+                "Watching Facebook Reels": "Ver Reels de Facebook",
+                "Learn how to watch and share reels":
+                "Aprende a ver y compartir reels",
 
-    "Verify Your Account": "Verifica Tu Cuenta"
-},
-french: {
-    "Facebook Learning Course": "Cours de Facebook",
+                "1. Open Reels 🎬": "1. Abrir Reels 🎬",
+                "2. Watch Videos": "2. Ver Videos",
+                "3. Like & Share": "3. Me Gusta y Compartir",
 
-    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
-    "Apprenez à vous connecter avec des amis, partager des photos et des vidéos, envoyer des messages et utiliser Facebook en toute sécurité et confiance.",
+         
+                "Your Facebook Profile": "Tu Perfil de Facebook",
+                "Learn how to open and manage your profile":
+                "Aprende a abrir y administrar tu perfil",
 
-    "Create & Register an Account": "Créer et enregistrer un compte",
+                "1. Open Your Profile 👤": "1. Abrir Tu Perfil 👤",
+                "2. View Your Information": "2. Ver Tu Información",
 
-    "Learn how to create a Facebook account from scratch":
-    "Apprenez à créer un compte Facebook à partir de zéro",
+           
+                "Create a Facebook Post": "Crear una Publicación en Facebook",
+                "Learn how to share posts and photos":
+                "Aprende a compartir publicaciones y fotos",
 
-    "Open Facebook": "Ouvrir Facebook",
+                "1. Start a Post": "1. Comenzar una Publicación",
+                "2. Write Something": "2. Escribir Algo",
+                "3. Share Your Post": "3. Compartir Tu Publicación",
 
-    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
-    "Ouvrez l'application Facebook sur votre téléphone ou visitez <strong>facebook.com</strong> sur votre ordinateur.",
+              
+                "Facebook Cybersecurity": "Ciberseguridad en Facebook",
+                "Learn how to stay safe on Facebook":
+                "Aprende a mantenerte seguro en Facebook",
 
-    "Click 'Create New Account'": "Cliquez sur 'Créer un nouveau compte'",
+                "1. Be Careful Online": "1. Ten Cuidado en Línea",
+                "2. Protect Your Password": "2. Protege Tu Contraseña",
+                "3. Block Unsafe People": "3. Bloquear Personas Peligrosas"
+            },
 
-    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
-    "Recherchez le bouton vert qui indique <strong>'Créer un nouveau compte'</strong> et cliquez dessus.",
+            french: {
 
-    "Enter Your Information": "Entrez vos informations",
+                "Facebook Learning Course": "Cours d'apprentissage Facebook",
 
-    "Click 'Sign Up'": "Cliquez sur 'S'inscrire'",
+                "Create & Register an Account": "Créer et Enregistrer un Compte",
 
-    "Verify Your Account": "Vérifiez votre compte"
-},
-bangla: {
-    "Facebook Learning Course": "ফেসবুক শেখার কোর্স",
+                                "Create & Register an Account": "Créer et Enregistrer un Compte",
+                "Learn how to create a Facebook account from scratch":
+                "Apprenez à créer un compte Facebook depuis le début",
 
-    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
-    "বন্ধুদের সাথে যুক্ত হওয়া, ছবি ও ভিডিও শেয়ার করা, বার্তা পাঠানো এবং নিরাপদভাবে ফেসবুক ব্যবহার করা শিখুন।",
+                "1. Open Facebook": "1. Ouvrir Facebook",
+                "2. Click 'Create New Account'": "2. Cliquez sur 'Créer un Nouveau Compte'",
+                "3. Enter Your Information": "3. Entrez Vos Informations",
+                "4. Click 'Sign Up'": "4. Cliquez sur 'S’inscrire'",
+                "5. Verify Your Account": "5. Vérifiez Votre Compte",
 
-    "Create & Register an Account": "একটি অ্যাকাউন্ট তৈরি ও নিবন্ধন করুন",
+                "Logging Into Your Account": "Connexion à Votre Compte",
+                "1. Enter Login Details": "1. Entrer les Informations",
+                "2. Forgot Password?": "2. Mot de Passe Oublié ?",
+                "3. Stay Safe": "3. Restez en Sécurité",
 
-    "Learn how to create a Facebook account from scratch":
-    "শুরু থেকে কিভাবে ফেসবুক অ্যাকাউন্ট তৈরি করতে হয় শিখুন",
+                "Facebook Feed & Home Page": "Accueil et Fil Facebook",
+                "1. Open Home Feed 🏠": "1. Ouvrir l’Accueil 🏠",
+                "2. View Posts": "2. Voir les Publications",
+                "3. Like & Comment": "3. Aimer et Commenter",
 
-    "Open Facebook": "ফেসবুক খুলুন",
+                "Watching Facebook Reels": "Regarder les Reels Facebook",
+                "1. Open Reels 🎬": "1. Ouvrir les Reels 🎬",
+                "2. Watch Videos": "2. Regarder des Vidéos",
+                "3. Like & Share": "3. Aimer et Partager",
 
-    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
-    "আপনার ফোনে ফেসবুক অ্যাপ খুলুন অথবা কম্পিউটারে <strong>facebook.com</strong> ভিজিট করুন।",
+                "Your Facebook Profile": "Votre Profil Facebook",
+                "1. Open Your Profile 👤": "1. Ouvrir Votre Profil 👤",
+                "2. View Your Information": "2. Voir Vos Informations",
 
-    "Click 'Create New Account'": "'নতুন অ্যাকাউন্ট তৈরি করুন' এ ক্লিক করুন",
+                "Create a Facebook Post": "Créer une Publication Facebook",
+                "1. Start a Post": "1. Commencer une Publication",
+                "2. Write Something": "2. Écrire Quelque Chose",
+                "3. Share Your Post": "3. Partager Votre Publication",
 
-    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
-    "<strong>'নতুন অ্যাকাউন্ট তৈরি করুন'</strong> লেখা সবুজ বাটনটি খুঁজে বের করে ক্লিক করুন।",
+                "Facebook Cybersecurity": "Cybersécurité Facebook",
+                "1. Be Careful Online": "1. Soyez Prudent en Ligne",
+                "2. Protect Your Password": "2. Protégez Votre Mot de Passe",
+                "3. Block Unsafe People": "3. Bloquer les Personnes Dangereuses"
+            },
 
-    
-"Enter Your Information": "<strong>আপনার তথ্য দিন</strong>",
+            bangla: {
 
-"Your full name": "<strong>আপনার পূর্ণ নাম</strong>",
-"Email or phone number": "<strong>ইমেইল বা ফোন নম্বর</strong>",
-"Create a strong password (use letters, numbers, and symbols)": 
-    "<strong>একটি শক্তিশালী পাসওয়ার্ড তৈরি করুন</strong> (অক্ষর, সংখ্যা এবং প্রতীক ব্যবহার করুন)",
-"Your birthday": "<strong>আপনার জন্মদিন</strong>",
-"Your gender": "<strong>আপনার লিঙ্গ</strong>",
+                "Facebook Learning Course": "ফেসবুক শেখার কোর্স",
 
-    "Click 'Sign Up'": "'সাইন আপ' এ ক্লিক করুন",
+                "Create & Register an Account": "অ্যাকাউন্ট তৈরি ও নিবন্ধন",
 
-    "Verify Your Account": "আপনার অ্যাকাউন্ট যাচাই করুন"
-},
-arabic: {
-    "Facebook Learning Course": "دورة تعلم فيسبوك",
+                "Create & Register an Account": "অ্যাকাউন্ট তৈরি ও নিবন্ধন",
+                "Learn how to create a Facebook account from scratch":
+                "শুরু থেকে কীভাবে ফেসবুক অ্যাকাউন্ট তৈরি করতে হয় শিখুন",
 
-    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
-    "تعلم كيفية التواصل مع الأصدقاء ومشاركة الصور والفيديوهات وإرسال الرسائل واستخدام فيسبوك بأمان وثقة.",
+                "1. Open Facebook": "১. ফেসবুক খুলুন",
+                "2. Click 'Create New Account'": "২. 'নতুন অ্যাকাউন্ট তৈরি করুন' এ ক্লিক করুন",
+                "3. Enter Your Information": "৩. আপনার তথ্য লিখুন",
+                "4. Click 'Sign Up'": "৪. 'সাইন আপ' এ ক্লিক করুন",
+                "5. Verify Your Account": "৫. আপনার অ্যাকাউন্ট যাচাই করুন",
 
-    "Create & Register an Account": "إنشاء وتسجيل حساب",
+              
+                "Logging Into Your Account": "আপনার অ্যাকাউন্টে লগইন",
+                "1. Enter Login Details": "১. লগইন তথ্য দিন",
+                "2. Forgot Password?": "২. পাসওয়ার্ড ভুলে গেছেন?",
+                "3. Stay Safe": "৩. নিরাপদ থাকুন",
 
-    "Learn how to create a Facebook account from scratch":
-    "تعلم كيفية إنشاء حساب فيسبوك من البداية",
+                "Facebook Feed & Home Page": "ফেসবুক হোম পেজ ও ফিড",
+                "1. Open Home Feed 🏠": "১. হোম ফিড খুলুন 🏠",
+                "2. View Posts": "২. পোস্ট দেখুন",
+                "3. Like & Comment": "৩. লাইক ও কমেন্ট",
 
-    "Open Facebook": "افتح فيسبوك",
+                "Watching Facebook Reels": "ফেসবুক রিলস দেখা",
+                "1. Open Reels 🎬": "১. রিলস খুলুন 🎬",
+                "2. Watch Videos": "২. ভিডিও দেখুন",
+                "3. Like & Share": "৩. লাইক ও শেয়ার",
 
-    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
-    "افتح تطبيق فيسبوك على هاتفك أو قم بزيارة <strong>facebook.com</strong> على جهاز الكمبيوتر.",
+                "Your Facebook Profile": "আপনার ফেসবুক প্রোফাইল",
+                "1. Open Your Profile 👤": "১. আপনার প্রোফাইল খুলুন 👤",
+                "2. View Your Information": "২. আপনার তথ্য দেখুন",
 
-    "Click 'Create New Account'": "اضغط على 'إنشاء حساب جديد'",
+                "Create a Facebook Post": "ফেসবুকে পোস্ট তৈরি",
+                "1. Start a Post": "১. পোস্ট শুরু করুন",
+                "2. Write Something": "২. কিছু লিখুন",
+                "3. Share Your Post": "৩. পোস্ট শেয়ার করুন",
 
-    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
-    "ابحث عن الزر الأخضر الذي يقول <strong>'إنشاء حساب جديد'</strong> واضغط عليه.",
+                "Facebook Cybersecurity": "ফেসবুক সাইবার নিরাপত্তা",
+                "1. Be Careful Online": "১. অনলাইনে সতর্ক থাকুন",
+                "2. Protect Your Password": "২. পাসওয়ার্ড সুরক্ষিত রাখুন",
+                "3. Block Unsafe People": "৩. বিপজ্জনক মানুষ ব্লক করুন"
+            },
 
-    "Enter Your Information": "أدخل معلوماتك",
+            arabic: {
 
-    "Click 'Sign Up'": "اضغط على 'تسجيل'",
+                "Facebook Learning Course": "دورة تعلم فيسبوك",
 
-    "Verify Your Account": "تحقق من حسابك"
-},
-chinese: {
-    "Facebook Learning Course": "Facebook 学习课程",
+                "Create & Register an Account": "إنشاء وتسجيل حساب",
 
-    "Learn how to connect with friends, share photos and videos, send messages, and explore Facebook safely and confidently.":
-    "学习如何与朋友联系、分享照片和视频、发送消息，并安全自信地使用 Facebook。",
+                  // 🇸🇦 ARABIC
+                "Create & Register an Account": "إنشاء وتسجيل حساب",
+                "Learn how to create a Facebook account from scratch":
+                "تعلم كيفية إنشاء حساب فيسبوك من البداية",
 
-    "Create & Register an Account": "创建并注册账户",
+                "1. Open Facebook": "١. افتح فيسبوك",
+                "2. Click 'Create New Account'": "٢. اضغط على 'إنشاء حساب جديد'",
+                "3. Enter Your Information": "٣. أدخل معلوماتك",
+                "4. Click 'Sign Up'": "٤. اضغط على 'التسجيل'",
+                "5. Verify Your Account": "٥. تحقق من حسابك",
 
-    "Learn how to create a Facebook account from scratch":
-    "学习如何从零开始创建 Facebook 账户",
 
-    "Open Facebook": "打开 Facebook",
+                "Logging Into Your Account": "تسجيل الدخول إلى حسابك",
+                "1. Enter Login Details": "١. أدخل معلومات تسجيل الدخول",
+                "2. Forgot Password?": "٢. نسيت كلمة المرور؟",
+                "3. Stay Safe": "٣. ابق آمناً",
 
-    "Open the Facebook app on your phone or visit <strong>facebook.com</strong> on your computer.":
-    "在手机上打开 Facebook 应用，或在电脑上访问 <strong>facebook.com</strong>。",
+                "Facebook Feed & Home Page": "الصفحة الرئيسية وفيسبوك",
+                "1. Open Home Feed 🏠": "١. افتح الصفحة الرئيسية 🏠",
+                "2. View Posts": "٢. عرض المنشورات",
+                "3. Like & Comment": "٣. الإعجاب والتعليق",
 
-    "Click 'Create New Account'": "点击“创建新账户”",
+                "Watching Facebook Reels": "مشاهدة ريلز فيسبوك",
+                "1. Open Reels 🎬": "١. افتح الريلز 🎬",
+                "2. Watch Videos": "٢. مشاهدة الفيديوهات",
+                "3. Like & Share": "٣. الإعجاب والمشاركة",
 
-    "Look for the green button that says <strong>'Create New Account'</strong> and click it.":
-    "找到写着 <strong>“创建新账户”</strong> 的绿色按钮并点击。",
+                "Your Facebook Profile": "ملفك الشخصي على فيسبوك",
+                "1. Open Your Profile 👤": "١. افتح ملفك الشخصي 👤",
+                "2. View Your Information": "٢. عرض معلوماتك",
 
-    "Enter Your Information": "填写你的信息",
+                "Create a Facebook Post": "إنشاء منشور على فيسبوك",
+                "1. Start a Post": "١. ابدأ منشوراً",
+                "2. Write Something": "٢. اكتب شيئاً",
+                "3. Share Your Post": "٣. شارك منشورك",
 
-    "Click 'Sign Up'": "点击“注册”",
+                "Facebook Cybersecurity": "الأمن السيبراني لفيسبوك",
+                "1. Be Careful Online": "١. كن حذراً على الإنترنت",
+                "2. Protect Your Password": "٢. احمِ كلمة المرور",
+                "3. Block Unsafe People": "٣. حظر الأشخاص غير الآمنين"
+            },
 
-    "Verify Your Account": "验证你的账户"
-}
-};
-        // Initialize
+            chinese: {
+
+                "Facebook Learning Course": "Facebook 学习课程",
+
+                "Create & Register an Account": "创建并注册账户",
+
+                "Create & Register an Account": "创建并注册账户",
+                "Learn how to create a Facebook account from scratch":
+                "学习如何从零开始创建 Facebook 账户",
+
+                "1. Open Facebook": "1. 打开 Facebook",
+                "2. Click 'Create New Account'": "2. 点击“创建新账户”",
+                "3. Enter Your Information": "3. 输入您的信息",
+                "4. Click 'Sign Up'": "4. 点击“注册”",
+                "5. Verify Your Account": "5. 验证您的账户",
+
+                "Logging Into Your Account": "登录您的账户",
+                "1. Enter Login Details": "1. 输入登录信息",
+                "2. Forgot Password?": "2. 忘记密码？",
+                "3. Stay Safe": "3. 保持安全",
+
+                "Facebook Feed & Home Page": "Facebook 首页和动态",
+                "1. Open Home Feed 🏠": "1. 打开首页 🏠",
+                "2. View Posts": "2. 查看帖子",
+                "3. Like & Comment": "3. 点赞和评论",
+
+                "Watching Facebook Reels": "观看 Facebook Reels",
+                "1. Open Reels 🎬": "1. 打开 Reels 🎬",
+                "2. Watch Videos": "2. 观看视频",
+                "3. Like & Share": "3. 点赞和分享",
+
+                "Your Facebook Profile": "您的 Facebook 个人资料",
+                "1. Open Your Profile 👤": "1. 打开您的个人资料 👤",
+                "2. View Your Information": "2. 查看您的信息",
+
+                "Create a Facebook Post": "创建 Facebook 帖子",
+                "1. Start a Post": "1. 开始发帖",
+                "2. Write Something": "2. 写点内容",
+                "3. Share Your Post": "3. 分享您的帖子",
+
+                "Facebook Cybersecurity": "Facebook 网络安全",
+                "1. Be Careful Online": "1. 在线时小心",
+                "2. Protect Your Password": "2. 保护您的密码",
+                "3. Block Unsafe People": "3. 屏蔽危险的人"
+            }
+        };
+                
+
         document.addEventListener('DOMContentLoaded', function() {
             updateProfile();
             addPlatformListeners();
         });
+
         function selectLanguage(language) {
-
-    selectedLanguage = language;
-
-    document.getElementById('language-modal').style.display = 'none';
-
-    translatePlatform(selectedPlatform, language);
-
-    showCourse(selectedPlatform);
-}
-
-function closeLanguageModal() {
-    document.getElementById('language-modal').style.display = 'none';
-}
-
-function translatePlatform(platform, language) {
-
-    if (language === 'english') return;
-
-    const data = platforms[platform];
-
-    // Translate title
-    if (translations[language][data.title]) {
-function translateText(text, language) {
-    return translations[language]?.[text] || text;
-}    
-
-    // Translate intro
-    if (translations[language][data.intro]) {
-        data.intro = translations[language][data.intro];
-    }
-
-    data.levels.forEach(level => {
-
-        if (translations[language][level.title]) {
-            level.title = translations[language][level.title];
+            selectedLanguage = language;
+            document.getElementById('language-modal').style.display = 'none';
+            showCourse(selectedPlatform);
         }
 
-        if (translations[language][level.description]) {
-            level.description =
-                translations[language][level.description];
+        function closeLanguageModal() {
+            document.getElementById('language-modal').style.display = 'none';
         }
 
-        level.steps.forEach(step => {
+        function translateText(text, language) {
+            if (language === 'english') return text;
+            return translations[language]?.[text] || text;
+        }
 
-            if (translations[language][step.title]) {
-                step.title =
-                    translations[language][step.title];
-            }
-
-            if (translations[language][step.content]) {
-                step.content =
-                    translations[language][step.content];
-            }
-        });
-    });
-}
         function showHome() {
             document.getElementById('home').style.display = 'block';
             document.getElementById('course').style.display = 'none';
@@ -1079,57 +1451,85 @@ function translateText(text, language) {
             document.getElementById('course').style.display = 'block';
             
             const data = platforms[platform];
-            document.getElementById('course-title').textContent =
-    translateText(data.title, selectedLanguage);
-
-document.getElementById('course-intro').textContent =
-    translateText(data.intro, selectedLanguage);
+            document.getElementById('course-title').textContent = translateText(data.title, selectedLanguage);
+            document.getElementById('course-intro').textContent = translateText(data.intro, selectedLanguage);
             document.getElementById('profile-section').style.display = 'block';
             
             currentPlatform = platform;
             renderLevels(platform);
         }
 
-       function addPlatformListeners() {
-    document.querySelectorAll('.platform-card').forEach(card => {
-        card.addEventListener('click', function() {
+        function addPlatformListeners() {
+            document.querySelectorAll('.platform-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    selectedPlatform = this.dataset.platform;
+                    document.getElementById('language-modal').style.display = 'block';
+                });
+            });
+        }
+function renderLevels(platform) {
+    const data = platforms[platform];
+    const grid = document.getElementById('levels-grid');
+    grid.innerHTML = '';
 
-            selectedPlatform = this.dataset.platform;
+    data.levels.forEach((level, index) => {
 
-            document.getElementById('language-modal').style.display = 'block';
-        });
+        // FIRST level always unlocked
+        let isUnlocked = false;
+
+        if (index === 0) {
+            isUnlocked = true;
+        } else {
+            // Unlock only if previous level completed
+            const previousLevel = data.levels[index - 1];
+            isUnlocked = userData.completedLessons[previousLevel.id];
+        }
+
+        const isCompleted = userData.completedLessons[level.id];
+
+        const levelCard = document.createElement('div');
+        levelCard.className = `level-card ${data.ai ? 'ai-lesson' : ''} ${!isUnlocked ? 'locked' : ''}`;
+
+        levelCard.innerHTML = `
+            <div class="level-number">
+                ${data.ai ? '🤖' : `Level ${index + 1}`}
+            </div>
+
+            <h3>${translateText(level.title, selectedLanguage)}</h3>
+
+            <p>${translateText(level.description, selectedLanguage)}</p>
+
+            <div class="points">
+                ${
+                    isCompleted
+                    ? '✅ Completed'
+                    : `+${level.points} Points`
+                }
+            </div>
+
+            ${
+                isUnlocked && !isCompleted
+                ? `
+                <button class="start-lesson ${data.ai ? 'ai-lesson-btn' : ''}"
+                    onclick="startLesson('${platform}', ${index})">
+                    ${data.ai ? '🚀 Start AI Lesson' : 'Start Lesson'}
+                </button>
+                `
+                : !isCompleted
+                ? `<button class="start-lesson" disabled>🔒 Locked</button>`
+                : ''
+            }
+        `;
+
+        grid.appendChild(levelCard);
     });
 }
 
-        function renderLevels(platform) {
-            const data = platforms[platform];
-            const grid = document.getElementById('levels-grid');
-            grid.innerHTML = '';
-
-            data.levels.forEach((level, index) => {
-                const isUnlocked = userData.completedLessons[level.id] || index === 0 || userData.currentLevel > index;
-                const isCompleted = userData.completedLessons[level.id];
-                
-                const levelCard = document.createElement('div');
-                levelCard.className = `level-card ${data.ai ? 'ai-lesson' : ''} ${!isUnlocked ? 'locked' : ''}`;
-                levelCard.innerHTML = `
-                    <div class="level-number">${data.ai ? '🤖' : `Level ${index + 1}`}</div>
-                   <h3>${translateText(level.title, selectedLanguage)}</h3>
-<p>${translateText(level.description, selectedLanguage)}</p>
-                    <div class="points">${isCompleted ? '✅ Completed' : `+${level.points} Points`}</div>
-                    ${!isCompleted ? `<button class="start-lesson ${data.ai ? 'ai-lesson-btn' : ''}" onclick="startLesson('${platform}', ${index})">
-                        ${data.ai ? '🚀 Start AI Lesson' : 'Start Lesson'}
-                    </button>` : ''}
-                `;
-                grid.appendChild(levelCard);
-            });
-        }
-
-        let currentPlatform = '';
-        let currentStep = 0;
-        let currentLesson = null;
-
         function startLesson(platform, levelIndex) {
+
+            userData.points = 0;
+            updateProfile();
+
             const data = platforms[platform].levels[levelIndex];
             showLesson(data);
         }
@@ -1140,9 +1540,9 @@ document.getElementById('course-intro').textContent =
             const content = document.getElementById('lesson-content');
             
             content.innerHTML = `
-                <h2>${lesson.title}</h2>
+                <h2>${translateText(lesson.title, selectedLanguage)}</h2>
                 <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0; font-style: italic;">
-                    ${platforms[currentPlatform].ai ? '🤖 AI Tip: Practice these steps with real AI!' : ''}
+                    ${platforms[currentPlatform].ai ? '🤖 AI Tip: Practice these steps with real AI!' : '📱 Follow these visual steps exactly as shown!'}
                 </div>
                 <div class="lesson-nav">
                     <button class="nav-btn prev-btn" id="prev-btn" onclick="previousStep()" style="display: none;">Previous</button>
@@ -1164,10 +1564,23 @@ document.getElementById('course-intro').textContent =
                 const stepDiv = document.createElement('div');
                 stepDiv.className = 'lesson-step';
                 stepDiv.id = `step-${index}`;
+                
+                let visualHTML = '';
+                if (step.image) {
+                    visualHTML = `<img src="${step.image}" alt="${step.title}" class="lesson-image" 
+                                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" 
+                                   onload="this.nextElementSibling.style.display='none'">`;
+                }
+                if (step.icon) {
+                    visualHTML += `<div class="lesson-icon" style="display: ${step.image ? 'none' : 'block'}">${step.icon}</div>`;
+                }
+                
                 stepDiv.innerHTML = `
-                    <h3><span class="step-number">${index + 1}</span> ${step.title}</h3>
-                    <div style="margin-top: 20px; font-size: 1.1rem; line-height: 1.7;">${step.content}</div>
-                `;
+                    <h3><span class="step-number">${index + 1}</span> ${translateText(step.title, selectedLanguage)}</h3>
+                    ${visualHTML}
+                    <div style="margin-top: 20px; font-size: 1.1rem; line-height: 1.7;">
+                        ${translateText(step.content, selectedLanguage)}
+                    </div>                `;
                 container.appendChild(stepDiv);
             });
         }
@@ -1209,11 +1622,9 @@ document.getElementById('course-intro').textContent =
             document.getElementById('unlocks').innerHTML = 
                 isAI ? 'Next AI Level Unlocked • 🤖 AI Beginner Badge!' : 'Next Level Unlocked • Beginner Badge Earned';
             
-            // Update user data
-            userData.points += lesson.points;
+                userData.points = 100;
             userData.lessonsCompleted++;
             userData.completedLessons[lesson.id] = true;
-            userData.currentLevel = Math.max(userData.currentLevel, 2);
             if (isAI && !userData.badges.includes('ai-beginner')) {
                 userData.badges.push('ai-beginner');
             }
@@ -1238,19 +1649,21 @@ document.getElementById('course-intro').textContent =
             document.getElementById('badges-earned').textContent = userData.badges.length;
         }
 
-        // Modal close on outside click
         window.onclick = function(event) {
             const lessonModal = document.getElementById('lesson-modal');
             const rewardModal = document.getElementById('reward-modal');
+            const languageModal = document.getElementById('language-modal');
             if (event.target === lessonModal) {
                 lessonModal.style.display = 'none';
             }
             if (event.target === rewardModal) {
                 rewardModal.style.display = 'none';
             }
+            if (event.target === languageModal) {
+                languageModal.style.display = 'none';
+            }
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (document.getElementById('lesson-modal').style.display === 'block') {
                 if (e.key === 'ArrowRight') nextStep();
@@ -1261,6 +1674,3 @@ document.getElementById('course-intro').textContent =
     </script>
 </body>
 </html>
-
-
-
