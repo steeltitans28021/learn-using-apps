@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Learn How to Use Social Media & AI</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <style>
   :root{
     --navy:#233A66; --navy-dark:#152444; --coral:#F2704B; --coral-dark:#D6572F;
@@ -50,6 +50,8 @@
     font-size:.65rem; padding:3px 7px; border-radius:10px; font-weight:700; }
   .platform-icon{ font-size:2.1rem; width:56px; height:56px; border-radius:50%;
     display:flex; align-items:center; justify-content:center; }
+  .platform-icon__img{ width:60%; height:60%; object-fit:contain; }
+  .platform-icon__img--invert{ filter:invert(1); }
   .platform-card h3{ margin:0; font-size:.95rem; color:var(--ink); }
   .progress-pill{ font-size:.7rem; color:var(--coral-dark); font-weight:700; }
 
@@ -132,13 +134,18 @@
     gap:10px; padding:8px 12px; }
   .ui-row{ height:38px; border-radius:10px; background:#EEF0F4; display:flex; align-items:center;
     justify-content:center; position:relative; flex-shrink:0; }
-  .ui-row i{ font-size:1.1rem; }
+  .ui-row__emoji{ font-size:1.3rem; }
   .ui-row--hot{ box-shadow:0 0 0 3px #FF3B30, 0 0 0 8px rgba(255,59,48,.28); animation:hotPulse 1.3s infinite; }
   @keyframes hotPulse{
     0%,100%{ box-shadow:0 0 0 3px #FF3B30, 0 0 0 6px rgba(255,59,48,.30); }
     50%{ box-shadow:0 0 0 3px #FF3B30, 0 0 0 12px rgba(255,59,48,.06); } }
   .ui-row__hand{ position:absolute; right:-10px; bottom:-16px; font-size:1.5rem; animation:tapBounce 1.1s infinite; }
   .type-cue{ text-align:center; font-size:1.4rem; margin-top:2px; opacity:.85; }
+  .phone-mock--photo{ background:#000; }
+  .phone-mock__screen--photo{ padding:0; overflow:hidden; }
+  .step-real-image{ width:100%; height:100%; object-fit:cover; border-radius:16px; }
+  /* Real emoji images (Twemoji) instead of relying on the device's font */
+  img.emoji{ height:1em; width:1em; margin:0 .05em 0 .1em; vertical-align:-0.15em; }
   .step-title{ text-align:center; font-size:1.15rem; font-weight:700; color:var(--navy); margin-bottom:10px; }
   .step-content{ text-align:center; font-size:1.02rem; color:var(--ink); padding:0 6px; min-height:60px; }
   .lesson-nav{ display:flex; gap:10px; margin-top:22px; }
@@ -182,7 +189,7 @@
       <h1><span data-i18n="app_title">Learn Social Media & AI</span></h1>
       <p data-i18n="main_goal">Choose an app below and learn step by step, with pictures and audio.</p>
       <div class="toolbar">
-        <button onclick="openLanguageModal()"><i class="fa-solid fa-language"></i> <span data-i18n="language_btn">Language</span></button>
+        <button onclick="openLanguageModal()">🌐 <span data-i18n="language_btn">Language</span></button>
         <button onclick="changeFontScale(0.1)">A+</button>
         <button onclick="changeFontScale(-0.1)">A-</button>
       </div>
@@ -198,8 +205,8 @@
   <!-- ===================== COURSE ===================== -->
   <section id="screen-course" class="screen">
     <div class="top-bar">
-      <button class="icon-btn" onclick="showHome()"><i class="fa-solid fa-arrow-left"></i></button>
-      <button class="icon-btn" onclick="speakVisible()"><i class="fa-solid fa-volume-high"></i></button>
+      <button class="icon-btn" onclick="showHome()">⬅️</button>
+      <button class="icon-btn" onclick="speakVisible()">🔊</button>
     </div>
     <div class="course-header">
       <h2 id="course-title"></h2>
@@ -214,7 +221,7 @@
   <div class="modal-box">
     <button class="modal-close" onclick="closeLesson()">&times;</button>
     <div class="step-progress" id="step-progress"></div>
-    <button class="speak-step-btn" onclick="speakVisible()"><i class="fa-solid fa-volume-high"></i> <span data-i18n="read_aloud">Read Aloud</span></button>
+    <button class="speak-step-btn" onclick="speakVisible()">🔊 <span data-i18n="read_aloud">Read Aloud</span></button>
     <div id="step-visual"></div>
     <div class="step-title" id="step-title"></div>
     <div class="step-content" id="step-content"></div>
@@ -281,6 +288,10 @@ const S = {
   points_word:{ english:"Points", spanish:"Puntos", french:"Points", bangla:"পয়েন্ট", arabic:"نقاط", chinese:"积分" },
   select_language:{ english:"Select Your Language", spanish:"Selecciona tu Idioma", french:"Choisissez votre Langue", bangla:"আপনার ভাষা নির্বাচন করুন", arabic:"اختر لغتك", chinese:"选择你的语言" },
   locked_msg:{ english:"Finish the lesson above first to unlock this one.", spanish:"Termina la lección anterior para desbloquear esta.", french:"Terminez la leçon précédente pour débloquer celle-ci.", bangla:"এটি আনলক করতে আগের পাঠটি শেষ করুন।", arabic:"أكمل الدرس السابق أولاً لفتح هذا الدرس.", chinese:"请先完成上一课以解锁本课。" },
+  need_more_points:{ english:"You need {n} more points to unlock this. Finish other lessons to earn points!", spanish:"Necesitas {n} puntos más para desbloquear esto. ¡Termina otras lecciones para ganar puntos!", french:"Il vous faut {n} points de plus pour débloquer ceci. Terminez d'autres leçons pour gagner des points !", bangla:"এটি আনলক করতে আপনার আরও {n} পয়েন্ট দরকার। পয়েন্ট অর্জন করতে অন্য পাঠ শেষ করুন!", arabic:"تحتاج إلى {n} نقاط إضافية لفتح هذا. أكمل دروسًا أخرى لكسب النقاط!", chinese:"你还需要{n}积分才能解锁。完成其他课程来获得积分吧！" },
+  confirm_unlock:{ english:"Use {n} of your points to unlock this lesson?", spanish:"¿Usar {n} de tus puntos para desbloquear esta lección?", french:"Utiliser {n} de vos points pour débloquer cette leçon ?", bangla:"এই পাঠ আনলক করতে আপনার {n} পয়েন্ট ব্যবহার করবেন?", arabic:"هل تريد استخدام {n} من نقاطك لفتح هذا الدرس؟", chinese:"使用{n}积分解锁这节课吗？" },
+  unlock_for_points:{ english:"🔓 Unlock for {n} points", spanish:"🔓 Desbloquear por {n} puntos", french:"🔓 Débloquer pour {n} points", bangla:"🔓 {n} পয়েন্টে আনলক করুন", arabic:"🔓 افتح مقابل {n} نقطة", chinese:"🔓 花费{n}积分解锁" },
+  points_short:{ english:"Need {n} more points", spanish:"Faltan {n} puntos", french:"Encore {n} points nécessaires", bangla:"আরও {n} পয়েন্ট দরকার", arabic:"يلزم {n} نقاط إضافية", chinese:"还差{n}积分" },
   lesson_complete_msg:{ english:"You finished this lesson. Great job!", spanish:"¡Terminaste esta lección! ¡Buen trabajo!", french:"Vous avez terminé cette leçon. Bravo !", bangla:"আপনি এই পাঠটি শেষ করেছেন। দারুণ কাজ!", arabic:"لقد أكملت هذا الدرس. أحسنت!", chinese:"你完成了这节课，太棒了！" },
 
   // ---- reusable instructional phrases ----
@@ -343,12 +354,17 @@ function t(key, vars){
   if (vars) Object.keys(vars).forEach(k => { str = str.replace("{"+k+"}", vars[k]); });
   return str;
 }
+function refreshEmoji(){
+  // Converts 🔊 👆 ⭐ etc. into real downloaded Twemoji images so they
+  // look the same, and actually show up, on every device.
+  if (window.twemoji) twemoji.parse(document.body, { className: "emoji" });
+}
 
 /* =====================================================================
    2. PLATFORM & LESSON DATA
    ===================================================================== */
 const PLATFORMS = {
-  facebook:{ name:"Facebook", faIcon:"fa-brands fa-facebook-f", cls:"pc-facebook", intro:"intro_facebook", ai:false,
+  facebook:{ name:"Facebook", logo:"facebook", emoji:"📘", cls:"pc-facebook", intro:"intro_facebook", ai:false,
     levels:[
       { id:"fb-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
         steps:[ "step_open_app","step_tap_signup","step_enter_info","step_confirm_signup" ] },
@@ -359,7 +375,7 @@ const PLATFORMS = {
       { id:"fb-4", titleKey:"lvl_stay_safe", icon:"🛡️", points:150, difficulty:"Hard",
         steps:[ "step_stay_safe_pw","step_stay_safe_links","step_stay_safe_block" ] },
     ]},
-  instagram:{ name:"Instagram", faIcon:"fa-brands fa-instagram", cls:"pc-instagram", intro:"intro_instagram", ai:false,
+  instagram:{ name:"Instagram", logo:"instagram", emoji:"📸", cls:"pc-instagram", intro:"intro_instagram", ai:false,
     levels:[
       { id:"ig-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
         steps:[ "step_open_app","step_tap_signup","step_enter_info","step_confirm_signup" ] },
@@ -368,21 +384,21 @@ const PLATFORMS = {
       { id:"ig-3", titleKey:"lvl_share_post", icon:"📸", points:120, difficulty:"Medium",
         steps:[ "step_start_post","step_add_content","step_publish_post" ] },
     ]},
-  tiktok:{ name:"TikTok", faIcon:"fa-brands fa-tiktok", cls:"pc-tiktok", intro:"intro_tiktok", ai:false,
+  tiktok:{ name:"TikTok", logo:"tiktok", invert:true, emoji:"🎵", cls:"pc-tiktok", intro:"intro_tiktok", ai:false,
     levels:[
       { id:"tt-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
         steps:[ "step_open_app","step_tap_signup","step_enter_info","step_confirm_signup" ] },
       { id:"tt-2", titleKey:"lvl_watch_videos", icon:"🎬", points:100, difficulty:"Easy",
         steps:[ "step_scroll_browse","step_tap_like","step_tap_comment" ] },
     ]},
-  youtube:{ name:"YouTube", faIcon:"fa-brands fa-youtube", cls:"pc-youtube", intro:"intro_youtube", ai:false,
+  youtube:{ name:"YouTube", logo:"youtube", emoji:"▶️", cls:"pc-youtube", intro:"intro_youtube", ai:false,
     levels:[
       { id:"yt-1", titleKey:"lvl_watch_videos", icon:"🎬", points:100, difficulty:"Easy",
         steps:[ "step_watch_video","step_tap_like","step_tap_comment" ] },
       { id:"yt-2", titleKey:"lvl_find_friends", icon:"🔔", points:100, difficulty:"Medium",
         steps:[ "step_find_friends","step_subscribe" ] },
     ]},
-  whatsapp:{ name:"WhatsApp", faIcon:"fa-brands fa-whatsapp", cls:"pc-whatsapp", intro:"intro_whatsapp", ai:false,
+  whatsapp:{ name:"WhatsApp", logo:"whatsapp", emoji:"💬", cls:"pc-whatsapp", intro:"intro_whatsapp", ai:false,
     levels:[
       { id:"wa-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
         steps:[ "step_open_app","step_enter_info","step_confirm_signup" ] },
@@ -391,28 +407,28 @@ const PLATFORMS = {
       { id:"wa-3", titleKey:"lvl_video_calling", icon:"📹", points:130, difficulty:"Medium",
         steps:[ "step_pick_contact","step_video_call" ] },
     ]},
-  messenger:{ name:"Messenger", faIcon:"fa-brands fa-facebook-messenger", cls:"pc-messenger", intro:"intro_messenger", ai:false,
+  messenger:{ name:"Messenger", logo:"messenger", emoji:"✉️", cls:"pc-messenger", intro:"intro_messenger", ai:false,
     levels:[
       { id:"ms-1", titleKey:"lvl_send_messages", icon:"💬", points:100, difficulty:"Easy",
         steps:[ "step_open_chat","step_pick_contact","step_type_message","step_send_message" ] },
       { id:"ms-2", titleKey:"lvl_video_calling", icon:"📹", points:130, difficulty:"Medium",
         steps:[ "step_pick_contact","step_video_call" ] },
     ]},
-  chatgpt:{ name:"ChatGPT", faIcon:"fa-solid fa-robot", cls:"pc-chatgpt", intro:"intro_chatgpt", ai:true,
+  chatgpt:{ name:"ChatGPT", logo:"openai", emoji:"🤖", cls:"pc-chatgpt", intro:"intro_chatgpt", ai:true,
     levels:[
       { id:"gpt-1", titleKey:"lvl_getting_started_ai", icon:"🌐", points:100, difficulty:"Easy",
         steps:[ "step_open_ai_app","step_type_question","step_read_answer" ] },
       { id:"gpt-2", titleKey:"lvl_ask_questions", icon:"💡", points:120, difficulty:"Medium",
         steps:[ "step_type_question","step_read_answer","step_ask_followup" ] },
     ]},
-  gemini:{ name:"Gemini", faIcon:"fa-solid fa-star", cls:"pc-gemini", intro:"intro_gemini", ai:true,
+  gemini:{ name:"Gemini", logo:"googlegemini", emoji:"✨", cls:"pc-gemini", intro:"intro_gemini", ai:true,
     levels:[
       { id:"gem-1", titleKey:"lvl_getting_started_ai", icon:"🌐", points:100, difficulty:"Easy",
         steps:[ "step_open_ai_app","step_type_question","step_read_answer" ] },
       { id:"gem-2", titleKey:"lvl_ask_questions", icon:"💡", points:120, difficulty:"Medium",
         steps:[ "step_type_question","step_read_answer","step_ask_followup" ] },
     ]},
-  metaai:{ name:"Meta AI", faIcon:"fa-solid fa-brain", cls:"pc-metaai", intro:"intro_metaai", ai:true,
+  metaai:{ name:"Meta AI", logo:"meta", emoji:"🧠", cls:"pc-metaai", intro:"intro_metaai", ai:true,
     levels:[
       { id:"mai-1", titleKey:"lvl_getting_started_ai", icon:"🌐", points:100, difficulty:"Easy",
         steps:[ "step_open_ai_app","step_type_question","step_read_answer" ] },
@@ -427,39 +443,63 @@ const PLATFORMS = {
    the lesson by LOOKING, even if they can't read the text at all.
    ===================================================================== */
 const STEP_VISUALS = {
-  step_open_app:        { mode:"click", rows:[{icon:"fa-solid fa-mobile-screen-button"}], hot:0 },
-  step_tap_signup:       { mode:"click", rows:[{icon:"fa-solid fa-house", muted:true},{icon:"fa-solid fa-user-plus"}], hot:1 },
-  step_enter_info:       { mode:"type",  rows:[{icon:"fa-solid fa-user"},{icon:"fa-solid fa-envelope"},{icon:"fa-solid fa-lock"}] },
-  step_confirm_signup:   { mode:"click", rows:[{icon:"fa-solid fa-user", muted:true},{icon:"fa-solid fa-envelope", muted:true},{icon:"fa-solid fa-circle-check"}], hot:2 },
-  step_find_friends:     { mode:"click", rows:[{icon:"fa-solid fa-magnifying-glass"}], hot:0 },
-  step_tap_follow_add:   { mode:"click", rows:[{icon:"fa-solid fa-circle-user", muted:true},{icon:"fa-solid fa-user-plus"}], hot:1 },
-  step_open_feed:        { mode:"simple", icon:"fa-solid fa-images", color:"#233A66", gesture:"read" },
-  step_scroll_browse:    { mode:"simple", icon:"fa-solid fa-arrows-up-down", color:"#233A66", gesture:"swipe" },
-  step_tap_like:         { mode:"click", rows:[{icon:"fa-solid fa-comment", muted:true},{icon:"fa-solid fa-heart"},{icon:"fa-solid fa-share", muted:true}], hot:1 },
-  step_tap_comment:      { mode:"click", rows:[{icon:"fa-solid fa-comment"},{icon:"fa-solid fa-heart", muted:true},{icon:"fa-solid fa-share", muted:true}], hot:0 },
-  step_tap_share:        { mode:"click", rows:[{icon:"fa-solid fa-comment", muted:true},{icon:"fa-solid fa-heart", muted:true},{icon:"fa-solid fa-share"}], hot:2 },
-  step_start_post:       { mode:"click", rows:[{icon:"fa-solid fa-plus"}], hot:0 },
-  step_add_content:      { mode:"type",  rows:[{icon:"fa-solid fa-image"},{icon:"fa-solid fa-font"}] },
-  step_publish_post:     { mode:"click", rows:[{icon:"fa-solid fa-font", muted:true},{icon:"fa-solid fa-paper-plane"}], hot:1 },
-  step_open_chat:        { mode:"click", rows:[{icon:"fa-solid fa-comment-dots"}], hot:0 },
-  step_pick_contact:     { mode:"click", rows:[{icon:"fa-solid fa-circle-user", muted:true},{icon:"fa-solid fa-circle-user"},{icon:"fa-solid fa-circle-user", muted:true}], hot:1 },
-  step_type_message:     { mode:"type",  rows:[{icon:"fa-solid fa-keyboard"}] },
-  step_send_message:     { mode:"click", rows:[{icon:"fa-solid fa-keyboard", muted:true},{icon:"fa-solid fa-paper-plane"}], hot:1 },
-  step_video_call:       { mode:"click", rows:[{icon:"fa-solid fa-phone", muted:true},{icon:"fa-solid fa-video"}], hot:1 },
-  step_open_ai_app:      { mode:"click", rows:[{icon:"fa-solid fa-robot"}], hot:0 },
-  step_type_question:    { mode:"type",  rows:[{icon:"fa-solid fa-keyboard"}] },
-  step_read_answer:      { mode:"simple", icon:"fa-solid fa-align-left", color:"#233A66", gesture:"read" },
-  step_ask_followup:     { mode:"click", rows:[{icon:"fa-solid fa-comment-medical"}], hot:0 },
-  step_stay_safe_pw:     { mode:"simple", icon:"fa-solid fa-lock", color:"#E67E22", gesture:"none" },
-  step_stay_safe_links:  { mode:"simple", icon:"fa-solid fa-triangle-exclamation", color:"#E67E22", gesture:"none" },
-  step_stay_safe_block:  { mode:"click", rows:[{icon:"fa-solid fa-circle-user", muted:true},{icon:"fa-solid fa-user-slash"}], hot:1 },
-  step_watch_video:      { mode:"click", rows:[{icon:"fa-solid fa-play"}], hot:0 },
-  step_subscribe:        { mode:"click", rows:[{icon:"fa-solid fa-circle-user", muted:true},{icon:"fa-solid fa-bell"}], hot:1 },
+  step_open_app:        { mode:"click", rows:[{emoji:"📱"}], hot:0 },
+  step_tap_signup:       { mode:"click", rows:[{emoji:"🏠", muted:true},{emoji:"➕"}], hot:1 },
+  step_enter_info:       { mode:"type",  rows:[{emoji:"👤"},{emoji:"✉️"},{emoji:"🔒"}] },
+  step_confirm_signup:   { mode:"click", rows:[{emoji:"👤", muted:true},{emoji:"✉️", muted:true},{emoji:"✅"}], hot:2 },
+  step_find_friends:     { mode:"click", rows:[{emoji:"🔍"}], hot:0 },
+  step_tap_follow_add:   { mode:"click", rows:[{emoji:"👤", muted:true},{emoji:"➕"}], hot:1 },
+  step_open_feed:        { mode:"simple", emoji:"🖼️", color:"#233A66", gesture:"read" },
+  step_scroll_browse:    { mode:"simple", emoji:"↕️", color:"#233A66", gesture:"swipe" },
+  step_tap_like:         { mode:"click", rows:[{emoji:"💬", muted:true},{emoji:"❤️"},{emoji:"➡️", muted:true}], hot:1 },
+  step_tap_comment:      { mode:"click", rows:[{emoji:"💬"},{emoji:"❤️", muted:true},{emoji:"➡️", muted:true}], hot:0 },
+  step_tap_share:        { mode:"click", rows:[{emoji:"💬", muted:true},{emoji:"❤️", muted:true},{emoji:"➡️"}], hot:2 },
+  step_start_post:       { mode:"click", rows:[{emoji:"➕"}], hot:0 },
+  step_add_content:      { mode:"type",  rows:[{emoji:"🖼️"},{emoji:"📝"}] },
+  step_publish_post:     { mode:"click", rows:[{emoji:"📝", muted:true},{emoji:"📤"}], hot:1 },
+  step_open_chat:        { mode:"click", rows:[{emoji:"💬"}], hot:0 },
+  step_pick_contact:     { mode:"click", rows:[{emoji:"👤", muted:true},{emoji:"👤"},{emoji:"👤", muted:true}], hot:1 },
+  step_type_message:     { mode:"type",  rows:[{emoji:"⌨️"}] },
+  step_send_message:     { mode:"click", rows:[{emoji:"⌨️", muted:true},{emoji:"📤"}], hot:1 },
+  step_video_call:       { mode:"click", rows:[{emoji:"📞", muted:true},{emoji:"📹"}], hot:1 },
+  step_open_ai_app:      { mode:"click", rows:[{emoji:"🤖"}], hot:0 },
+  step_type_question:    { mode:"type",  rows:[{emoji:"⌨️"}] },
+  step_read_answer:      { mode:"simple", emoji:"📄", color:"#233A66", gesture:"read" },
+  step_ask_followup:     { mode:"click", rows:[{emoji:"💬"}], hot:0 },
+  step_stay_safe_pw:     { mode:"simple", emoji:"🔒", color:"#E67E22", gesture:"none" },
+  step_stay_safe_links:  { mode:"simple", emoji:"⚠️", color:"#E67E22", gesture:"none" },
+  step_stay_safe_block:  { mode:"click", rows:[{emoji:"👤", muted:true},{emoji:"🚫"}], hot:1 },
+  step_watch_video:      { mode:"click", rows:[{emoji:"▶️"}], hot:0 },
+  step_subscribe:        { mode:"click", rows:[{emoji:"👤", muted:true},{emoji:"🔔"}], hot:1 },
 };
 const GESTURE_EMOJI = { tap:"👆", type:"⌨️", read:"👀", swipe:"✋" };
 
-function renderStepVisual(key){
-  const v = STEP_VISUALS[key] || { mode:"click", rows:[{icon:"fa-solid fa-hand-pointer"}], hot:0 };
+/* ---- OPTIONAL real screenshots ----
+   Drop your own screenshot files into an "images" folder next to this
+   HTML file, then reference them here as:
+     STEP_IMAGES.facebook.step_tap_signup = "images/facebook-signup.png";
+   If a platform+step combination isn't listed here, the app automatically
+   falls back to the drawn phone-mockup above — nothing breaks either way.
+   (Using your own screenshots avoids relying on other websites' images,
+   which can break, change, or raise copyright questions since you didn't
+   take them yourself.) */
+const STEP_IMAGES = {
+  // facebook: { step_tap_signup: "images/facebook-signup.png" },
+  // instagram: { step_open_app: "images/instagram-open.png" },
+};
+
+function renderStepVisual(key, platformKey){
+  const customImage = STEP_IMAGES[platformKey] && STEP_IMAGES[platformKey][key];
+  if (customImage){
+    return `<div class="phone-mock phone-mock--photo">
+      <div class="phone-mock__notch"></div>
+      <div class="phone-mock__screen phone-mock__screen--photo">
+        <img src="${customImage}" alt="" class="step-real-image"
+          onerror="this.closest('.phone-mock').outerHTML = renderStepVisual('${key}', null)">
+      </div>
+    </div>`;
+  }
+  const v = STEP_VISUALS[key] || { mode:"click", rows:[{emoji:"👆"}], hot:0 };
   let inner;
 
   if (v.mode === "click"){
@@ -469,22 +509,21 @@ function renderStepVisual(key){
     inner = `<div class="ui-screen">` + v.rows.map((r, i) => {
       const isHot = i === v.hot;
       const bg = r.muted ? "#EEF0F4" : (isHot ? "#FF3B30" : "#233A66");
-      const iconColor = r.muted ? "#9AA0AE" : "#fff";
       return `<div class="ui-row ${isHot ? "ui-row--hot" : ""}" style="background:${bg}">
-        <i class="${r.icon}" style="color:${iconColor}"></i>
+        <span class="ui-row__emoji">${r.emoji}</span>
         ${isHot ? `<span class="ui-row__hand">👆</span>` : ""}
       </div>`;
     }).join("") + `</div>`;
   } else if (v.mode === "type"){
     inner = `<div class="ui-screen">` +
-      v.rows.map(r => `<div class="ui-row"><i class="${r.icon}" style="color:#9AA0AE"></i></div>`).join("") +
+      v.rows.map(r => `<div class="ui-row"><span class="ui-row__emoji">${r.emoji}</span></div>`).join("") +
       `<div class="type-cue">⌨️</div></div>`;
   } else {
     // simple centered icon fallback (read / swipe / informational steps)
     const gestureHtml = v.gesture && v.gesture !== "none"
       ? `<div class="phone-mock__gesture ${v.gesture}">${GESTURE_EMOJI[v.gesture]}</div>` : "";
     inner = `<div class="phone-mock__ring" style="border-color:${v.color}"></div>
-      <div class="phone-mock__icon" style="background:${v.color}"><i class="${v.icon}"></i></div>
+      <div class="phone-mock__icon" style="background:${v.color}"><span class="ui-row__emoji">${v.emoji}</span></div>
       ${gestureHtml}`;
   }
 
@@ -496,8 +535,12 @@ function renderStepVisual(key){
    3. STATE (persisted with localStorage)
    ===================================================================== */
 let state = JSON.parse(localStorage.getItem("lc_state") || "null") || {
-  points:0, completed:{}, // completed["fb-1"] = true
+  points:0, completed:{}, unlocked:{}, // unlocked["ig-2"] = true once bought with points
 };
+// Migrate older saved progress that predates the "unlocked" field
+if (!state.completed) state.completed = {};
+if (!state.unlocked) state.unlocked = {};
+if (typeof state.points !== "number") state.points = 0;
 function saveState(){ localStorage.setItem("lc_state", JSON.stringify(state)); }
 
 let fontScale = parseFloat(localStorage.getItem("lc_font") || "1");
@@ -522,13 +565,16 @@ function renderHome(){
     card.onclick = () => openPlatform(key);
     card.innerHTML = `
       ${p.ai ? `<div class="ai-tag">AI</div>` : ""}
-      <div class="platform-icon"><i class="${p.faIcon}"></i></div>
+      <div class="platform-icon">${p.logo
+      ? `<img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/${p.logo}.svg" alt="" class="platform-icon__img${p.invert ? ' platform-icon__img--invert' : ''}" onerror="this.outerHTML='${p.emoji}'">`
+      : p.emoji}</div>
       <h3>${p.name}</h3>
       <div class="progress-pill">${doneLevels}/${totalLevels} ✅</div>`;
     grid.appendChild(card);
   });
   document.getElementById("stat-points").textContent = state.points;
   document.getElementById("stat-lessons").textContent = Object.keys(state.completed).length;
+  refreshEmoji();
 }
 
 let activePlatformKey = null;
@@ -540,22 +586,37 @@ function openPlatform(key){
   const list = document.getElementById("levels-list");
   list.innerHTML = "";
   p.levels.forEach((lvl, idx) => {
-    const prevDone = idx === 0 || state.completed[p.levels[idx-1].id];
+    const cost = idx === 0 ? 0 : p.levels[idx-1].points; // unlock cost = points earned from the previous level
     const isDone = !!state.completed[lvl.id];
-    const locked = !prevDone;
+    const isUnlocked = idx === 0 || isDone || !!state.unlocked[lvl.id];
+    const canAfford = state.points >= cost;
     const card = document.createElement("div");
-    card.className = "level-card" + (locked ? " locked" : "") + (isDone ? " done" : "");
-    card.onclick = () => locked ? alert(t("locked_msg")) : openLesson(key, lvl.id);
+    card.className = "level-card" + (!isUnlocked ? " locked" : "") + (isDone ? " done" : "");
+    card.onclick = () => {
+      if (isUnlocked){ openLesson(key, lvl.id); return; }
+      if (!canAfford){ showToast(t("need_more_points", { n: cost - state.points })); return; }
+      if (confirm(t("confirm_unlock", { n: cost }))){
+        state.points -= cost;
+        state.unlocked[lvl.id] = true;
+        saveState();
+        openPlatform(key);
+      }
+    };
+    const lockLine = !isUnlocked
+      ? `<div class="level-meta" style="color:${canAfford ? '#3FAE58' : '#C0392B'}">${canAfford ? t("unlock_for_points",{n:cost}) : t("points_short",{n:cost - state.points})}</div>`
+      : "";
     card.innerHTML = `
       <div class="level-num">${isDone ? "✅" : (idx+1)}</div>
       <div class="level-body">
         <h3>${t(lvl.titleKey)}</h3>
         <div class="level-meta"><span>⭐ ${lvl.points} pts</span><span>${lvl.difficulty}</span></div>
+        ${lockLine}
       </div>
-      ${locked ? `<div class="lock-flag">🔒</div>` : ""}`;
+      ${!isUnlocked ? `<div class="lock-flag">🔒</div>` : ""}`;
     list.appendChild(card);
   });
   showScreen("screen-course");
+  refreshEmoji();
 }
 
 function showHome(){ renderHome(); showScreen("screen-home"); }
@@ -583,7 +644,7 @@ function renderStep(){
   const { lvl, appName } = activeLesson;
   const steps = lvl.steps;
   const key = steps[activeStep];
-  document.getElementById("step-visual").innerHTML = renderStepVisual(key);
+  document.getElementById("step-visual").innerHTML = renderStepVisual(key, activeLesson.platformKey);
   document.getElementById("step-title").textContent = t(lvl.titleKey) + " (" + (activeStep+1) + "/" + steps.length + ")";
   document.getElementById("step-content").textContent = t(key, { app: appName });
 
@@ -599,6 +660,7 @@ function renderStep(){
   const nextBtn = document.getElementById("btn-next");
   nextBtn.textContent = (activeStep === steps.length - 1) ? t("finish_btn") : t("next_btn");
   AppSpeech.stop();
+  refreshEmoji();
 }
 function prevStep(){ if (activeStep > 0){ activeStep--; renderStep(); } }
 function nextStep(){
@@ -642,6 +704,7 @@ function openLanguageModal(){
   checkBtn.onclick = showInstalledVoices;
   grid.appendChild(checkBtn);
   document.getElementById("language-modal").classList.add("active");
+  refreshEmoji();
 }
 async function showInstalledVoices(){
   const voices = await AppSpeech.waitForVoices();
@@ -778,6 +841,7 @@ function showToast(msg){
   toast.style.display = "block";
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { toast.style.display = "none"; }, 4500);
+  refreshEmoji();
 }
 
 /* =====================================================================
@@ -787,6 +851,7 @@ document.documentElement.setAttribute("lang", LANGS[currentLang].bcp47.split("-"
 document.documentElement.setAttribute("dir", LANGS[currentLang].dir);
 applyStaticTranslations();
 renderHome();
+refreshEmoji();
 if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
 </script>
 </body>
