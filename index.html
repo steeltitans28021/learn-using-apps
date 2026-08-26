@@ -50,8 +50,29 @@
     font-size:.65rem; padding:3px 7px; border-radius:10px; font-weight:700; }
   .platform-icon{ font-size:2.1rem; width:56px; height:56px; border-radius:50%;
     display:flex; align-items:center; justify-content:center; }
-  .platform-icon__img{ width:60%; height:60%; object-fit:contain; }
-  .platform-icon__img--invert{ filter:invert(1); }
+  .platform-icon__img{
+  width:60%;
+  height:60%;
+  object-fit:contain;
+}
+
+/* AI logos */
+.pc-chatgpt .platform-icon__img,
+.pc-gemini .platform-icon__img,
+.pc-metaai .platform-icon__img{
+  filter: invert(48%) sepia(40%) saturate(700%) hue-rotate(130deg)
+          brightness(88%) contrast(90%);
+}
+
+.pc-chatgpt .platform-icon__img{
+  width:68%;
+  height:68%;
+}
+
+.platform-icon__img--invert{
+  filter:invert(1);
+}
+
   .platform-card h3{ margin:0; font-size:.95rem; color:var(--ink); }
   .progress-pill{ font-size:.7rem; color:var(--coral-dark); font-weight:700; }
 
@@ -563,13 +584,19 @@ function renderHome(){
     const card = document.createElement("div");
     card.className = "platform-card " + p.cls + (p.ai ? " ai-card" : "");
     card.onclick = () => openPlatform(key);
-    card.innerHTML = `
-      ${p.ai ? `<div class="ai-tag">AI</div>` : ""}
-      <div class="platform-icon">${p.logo
-      ? `<img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/${p.logo}.svg" alt="" class="platform-icon__img${p.invert ? ' platform-icon__img--invert' : ''}" onerror="this.outerHTML='${p.emoji}'">`
-      : p.emoji}</div>
-      <h3>${p.name}</h3>
-      <div class="progress-pill">${doneLevels}/${totalLevels} ✅</div>`;
+   card.innerHTML = `
+  ${p.ai ? `<div class="ai-tag">AI</div>` : ""}
+  <div class="platform-icon">
+    ${p.logo
+      ? `<img
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/${p.logo}.svg"
+          alt="${p.name}"
+          class="platform-icon__img${p.invert ? ' platform-icon__img--invert' : ''}"
+        >`
+      : p.emoji}
+  </div>
+  <h3>${p.name}</h3>
+  <div class="progress-pill">${doneLevels}/${totalLevels} ✅</div>`;
     grid.appendChild(card);
   });
   document.getElementById("stat-points").textContent = state.points;
@@ -592,16 +619,25 @@ function openPlatform(key){
     const canAfford = state.points >= cost;
     const card = document.createElement("div");
     card.className = "level-card" + (!isUnlocked ? " locked" : "") + (isDone ? " done" : "");
-    card.onclick = () => {
-      if (isUnlocked){ openLesson(key, lvl.id); return; }
-      if (!canAfford){ showToast(t("need_more_points", { n: cost - state.points })); return; }
-      if (confirm(t("confirm_unlock", { n: cost }))){
-        state.points -= cost;
-        state.unlocked[lvl.id] = true;
-        saveState();
-        openPlatform(key);
-      }
-    };
+   card.onclick = () => {
+  if (isUnlocked){
+    openLesson(key, lvl.id);
+    return;
+  }
+
+  if (!canAfford){
+    showToast(t("need_more_points", { n: cost - state.points }));
+    return;
+  }
+
+  // Automatically unlock when the user has enough points
+  state.points -= cost;
+  state.unlocked[lvl.id] = true;
+  saveState();
+
+  // Refresh the course screen
+  openPlatform(key);
+};
     const lockLine = !isUnlocked
       ? `<div class="level-meta" style="color:${canAfford ? '#3FAE58' : '#C0392B'}">${canAfford ? t("unlock_for_points",{n:cost}) : t("points_short",{n:cost - state.points})}</div>`
       : "";
