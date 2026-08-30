@@ -279,3 +279,656 @@ const LANGS = {
   chinese:{ bcp47:"zh-CN", dir:"ltr", label:"🇨🇳 中文" },
 };
 
+const S = {
+  app_title:{ english:"Learn Social Media & AI", spanish:"Aprende Redes Sociales e IA", french:"Apprendre les réseaux sociaux et l'IA", bangla:"সোশ্যাল মিডিয়া ও এআই শিখুন", arabic:"تعلّم وسائل التواصل والذكاء الاصطناعي", chinese:"学习社交媒体和人工智能" },
+  main_goal:{ english:"Choose an app below and learn step by step, with pictures and audio.", spanish:"Elige una app abajo y aprende paso a paso, con imágenes y audio.", french:"Choisissez une application ci-dessous et apprenez étape par étape, avec images et audio.", bangla:"নিচে থেকে একটি অ্যাপ বেছে নিন এবং ছবি ও অডিও সহ ধাপে ধাপে শিখুন।", arabic:"اختر تطبيقًا أدناه وتعلّم خطوة بخطوة، بالصور والصوت.", chinese:"在下面选择一个应用，通过图片和语音逐步学习。" },
+  language_btn:{ english:"Language", spanish:"Idioma", french:"Langue", bangla:"ভাষা", arabic:"اللغة", chinese:"语言" },
+  total_points:{ english:"Total Points", spanish:"Puntos Totales", french:"Points Totaux", bangla:"মোট পয়েন্ট", arabic:"إجمالي النقاط", chinese:"总积分" },
+  lessons_completed:{ english:"Lessons Completed", spanish:"Lecciones Completadas", french:"Leçons Terminées", bangla:"সম্পন্ন পাঠ", arabic:"الدروس المكتملة", chinese:"已完成课程" },
+  read_aloud:{ english:"Read Aloud", spanish:"Leer en voz alta", french:"Lire à voix haute", bangla:"জোরে পড়ুন", arabic:"اقرأ بصوت عالٍ", chinese:"朗读" },
+  prev_btn:{ english:"Back", spanish:"Atrás", french:"Retour", bangla:"পেছনে", arabic:"رجوع", chinese:"上一步" },
+  next_btn:{ english:"Next", spanish:"Siguiente", french:"Suivant", bangla:"পরবর্তী", arabic:"التالي", chinese:"下一步" },
+  finish_btn:{ english:"Finish", spanish:"Terminar", french:"Terminer", bangla:"শেষ করুন", arabic:"إنهاء", chinese:"完成" },
+  congratulations:{ english:"Congratulations!", spanish:"¡Felicidades!", french:"Félicitations !", bangla:"অভিনন্দন!", arabic:"تهانينا!", chinese:"恭喜！" },
+  continue_learning:{ english:"Continue Learning", spanish:"Seguir Aprendiendo", french:"Continuer à Apprendre", bangla:"শেখা চালিয়ে যান", arabic:"متابعة التعلم", chinese:"继续学习" },
+  points_word:{ english:"Points", spanish:"Puntos", french:"Points", bangla:"পয়েন্ট", arabic:"نقاط", chinese:"积分" },
+  select_language:{ english:"Select Your Language", spanish:"Selecciona tu Idioma", french:"Choisissez votre Langue", bangla:"আপনার ভাষা নির্বাচন করুন", arabic:"اختر لغتك", chinese:"选择你的语言" },
+  locked_msg:{ english:"Finish the lesson above first to unlock this one.", spanish:"Termina la lección anterior para desbloquear esta.", french:"Terminez la leçon précédente pour débloquer celle-ci.", bangla:"এটি আনলক করতে আগের পাঠটি শেষ করুন।", arabic:"أكمل الدرس السابق أولاً لفتح هذا الدرس.", chinese:"请先完成上一课以解锁本课。" },
+  need_more_points:{ english:"You need {n} more points to unlock this. Finish other lessons to earn points!", spanish:"Necesitas {n} puntos más para desbloquear esto. ¡Termina otras lecciones para ganar puntos!", french:"Il vous faut {n} points de plus pour débloquer ceci. Terminez d'autres leçons pour gagner des points !", bangla:"এটি আনলক করতে আপনার আরও {n} পয়েন্ট দরকার। পয়েন্ট অর্জন করতে অন্য পাঠ শেষ করুন!", arabic:"تحتاج إلى {n} نقاط إضافية لفتح هذا. أكمل دروسًا أخرى لكسب النقاط!", chinese:"你还需要{n}积分才能解锁。完成其他课程来获得积分吧！" },
+  confirm_unlock:{ english:"Use {n} of your points to unlock this lesson?", spanish:"¿Usar {n} de tus puntos para desbloquear esta lección?", french:"Utiliser {n} de vos points pour débloquer cette leçon ?", bangla:"এই পাঠ আনলক করতে আপনার {n} পয়েন্ট ব্যবহার করবেন?", arabic:"هل تريد استخدام {n} من نقاطك لفتح هذا الدرس؟", chinese:"使用{n}积分解锁这节课吗？" },
+  unlock_for_points:{ english:"🔓 Unlock for {n} points", spanish:"🔓 Desbloquear por {n} puntos", french:"🔓 Débloquer pour {n} points", bangla:"🔓 {n} পয়েন্টে আনলক করুন", arabic:"🔓 افتح مقابل {n} نقطة", chinese:"🔓 花费{n}积分解锁" },
+  points_short:{ english:"Need {n} more points", spanish:"Faltan {n} puntos", french:"Encore {n} points nécessaires", bangla:"আরও {n} পয়েন্ট দরকার", arabic:"يلزم {n} نقاط إضافية", chinese:"还差{n}积分" },
+
+  // ---- text labels shown ON the mock screens (like "Username"/"Password") ----
+  lbl_name:{ english:"Name", spanish:"Nombre", french:"Nom", bangla:"নাম", arabic:"الاسم", chinese:"姓名" },
+  lbl_email:{ english:"Email", spanish:"Correo", french:"E-mail", bangla:"ইমেইল", arabic:"البريد الإلكتروني", chinese:"邮箱" },
+  lbl_password:{ english:"Password", spanish:"Contraseña", french:"Mot de passe", bangla:"পাসওয়ার্ড", arabic:"كلمة المرور", chinese:"密码" },
+  lbl_confirm:{ english:"Confirm", spanish:"Confirmar", french:"Confirmer", bangla:"নিশ্চিত করুন", arabic:"تأكيد", chinese:"确认" },
+  lbl_search:{ english:"Search", spanish:"Buscar", french:"Rechercher", bangla:"অনুসন্ধান", arabic:"بحث", chinese:"搜索" },
+  lbl_follow:{ english:"Follow", spanish:"Seguir", french:"Suivre", bangla:"ফলো", arabic:"متابعة", chinese:"关注" },
+  lbl_friend:{ english:"Friend", spanish:"Amigo", french:"Ami", bangla:"বন্ধু", arabic:"صديق", chinese:"好友" },
+  lbl_home:{ english:"Home", spanish:"Inicio", french:"Accueil", bangla:"হোম", arabic:"الرئيسية", chinese:"主页" },
+  lbl_signup:{ english:"Sign Up", spanish:"Registrarse", french:"S'inscrire", bangla:"সাইন আপ", arabic:"إنشاء حساب", chinese:"注册" },
+  lbl_like:{ english:"Like", spanish:"Me gusta", french:"J'aime", bangla:"লাইক", arabic:"إعجاب", chinese:"点赞" },
+  lbl_comment:{ english:"Comment", spanish:"Comentar", french:"Commenter", bangla:"মন্তব্য", arabic:"تعليق", chinese:"评论" },
+  lbl_share:{ english:"Share", spanish:"Compartir", french:"Partager", bangla:"শেয়ার", arabic:"مشاركة", chinese:"分享" },
+  lbl_new_post:{ english:"New Post", spanish:"Nueva Publicación", french:"Nouvelle Publication", bangla:"নতুন পোস্ট", arabic:"منشور جديد", chinese:"发帖" },
+  lbl_photo:{ english:"Photo", spanish:"Foto", french:"Photo", bangla:"ছবি", arabic:"صورة", chinese:"照片" },
+  lbl_caption:{ english:"Caption", spanish:"Descripción", french:"Légende", bangla:"ক্যাপশন", arabic:"وصف", chinese:"文字说明" },
+  lbl_post:{ english:"Post", spanish:"Publicar", french:"Publier", bangla:"পোস্ট", arabic:"نشر", chinese:"发布" },
+  lbl_messages:{ english:"Messages", spanish:"Mensajes", french:"Messages", bangla:"বার্তা", arabic:"الرسائل", chinese:"消息" },
+  lbl_contact:{ english:"Contact", spanish:"Contacto", french:"Contact", bangla:"পরিচিতি", arabic:"جهة اتصال", chinese:"联系人" },
+  lbl_message:{ english:"Message", spanish:"Mensaje", french:"Message", bangla:"বার্তা", arabic:"رسالة", chinese:"消息" },
+  lbl_send:{ english:"Send", spanish:"Enviar", french:"Envoyer", bangla:"পাঠান", arabic:"إرسال", chinese:"发送" },
+  lbl_call:{ english:"Call", spanish:"Llamar", french:"Appeler", bangla:"কল", arabic:"اتصال", chinese:"通话" },
+  lbl_video_call:{ english:"Video Call", spanish:"Videollamada", french:"Appel Vidéo", bangla:"ভিডিও কল", arabic:"مكالمة فيديو", chinese:"视频通话" },
+  lbl_chat:{ english:"Chat", spanish:"Chat", french:"Discussion", bangla:"চ্যাট", arabic:"محادثة", chinese:"聊天" },
+  lbl_question:{ english:"Question", spanish:"Pregunta", french:"Question", bangla:"প্রশ্ন", arabic:"سؤال", chinese:"问题" },
+  lbl_answer:{ english:"Answer", spanish:"Respuesta", french:"Réponse", bangla:"উত্তর", arabic:"إجابة", chinese:"答案" },
+  lbl_ask_more:{ english:"Ask More", spanish:"Preguntar Más", french:"Demander Plus", bangla:"আরও জিজ্ঞাসা", arabic:"اسأل المزيد", chinese:"继续提问" },
+  lbl_warning:{ english:"Warning", spanish:"Advertencia", french:"Avertissement", bangla:"সতর্কতা", arabic:"تحذير", chinese:"警告" },
+  lbl_block:{ english:"Block", spanish:"Bloquear", french:"Bloquer", bangla:"ব্লক", arabic:"حظر", chinese:"屏蔽" },
+  lbl_play:{ english:"Play", spanish:"Reproducir", french:"Lire", bangla:"চালান", arabic:"تشغيل", chinese:"播放" },
+  lbl_creator:{ english:"Creator", spanish:"Creador", french:"Créateur", bangla:"নির্মাতা", arabic:"منشئ المحتوى", chinese:"创作者" },
+  lbl_subscribe:{ english:"Subscribe", spanish:"Suscribirse", french:"S'abonner", bangla:"সাবস্ক্রাইব", arabic:"اشتراك", chinese:"订阅" },
+  lbl_open_app:{ english:"Open App", spanish:"Abrir App", french:"Ouvrir l'App", bangla:"অ্যাপ খুলুন", arabic:"فتح التطبيق", chinese:"打开应用" },
+  lbl_scroll:{ english:"Scroll", spanish:"Desplazar", french:"Défiler", bangla:"স্ক্রল", arabic:"تمرير", chinese:"滑动" },
+  lbl_feed:{ english:"Feed", spanish:"Feed", french:"Fil d'actualité", bangla:"ফিড", arabic:"آخر الأخبار", chinese:"动态" },
+  lesson_complete_msg:{ english:"You finished this lesson. Great job!", spanish:"¡Terminaste esta lección! ¡Buen trabajo!", french:"Vous avez terminé cette leçon. Bravo !", bangla:"আপনি এই পাঠটি শেষ করেছেন। দারুণ কাজ!", arabic:"لقد أكملت هذا الدرس. أحسنت!", chinese:"你完成了这节课，太棒了！" },
+
+  // ---- reusable instructional phrases ----
+  step_open_app:{ english:"Open {app} on your phone or computer.", spanish:"Abre {app} en tu teléfono o computadora.", french:"Ouvrez {app} sur votre téléphone ou ordinateur.", bangla:"আপনার ফোনে বা কম্পিউটারে {app} খুলুন।", arabic:"افتح {app} على هاتفك أو حاسوبك.", chinese:"在手机或电脑上打开{app}。" },
+  step_tap_signup:{ english:"Tap the button that says 'Sign Up' or 'Create Account'.", spanish:"Toca el botón que dice 'Registrarse' o 'Crear Cuenta'.", french:"Appuyez sur le bouton « S'inscrire » ou « Créer un compte ».", bangla:"'Sign Up' বা 'Create Account' লেখা বোতামে চাপুন।", arabic:"اضغط على زر 'إنشاء حساب' أو 'التسجيل'.", chinese:"点击“注册”或“创建账户”按钮。" },
+  step_enter_info:{ english:"Enter your name, email or phone number, and choose a password.", spanish:"Ingresa tu nombre, correo o teléfono, y elige una contraseña.", french:"Saisissez votre nom, e-mail ou téléphone, et choisissez un mot de passe.", bangla:"আপনার নাম, ইমেইল বা ফোন নম্বর দিন এবং একটি পাসওয়ার্ড বেছে নিন।", arabic:"أدخل اسمك وبريدك الإلكتروني أو رقم هاتفك، واختر كلمة مرور.", chinese:"输入你的姓名、邮箱或电话号码，并设置密码。" },
+  step_confirm_signup:{ english:"Check your information, then tap 'Sign Up' to finish.", spanish:"Revisa tu información y toca 'Registrarse' para terminar.", french:"Vérifiez vos informations, puis appuyez sur « S'inscrire ».", bangla:"তথ্য যাচাই করে 'Sign Up' চাপুন শেষ করতে।", arabic:"تحقق من معلوماتك ثم اضغط 'تسجيل' للإنهاء.", chinese:"核对信息后点击“注册”完成。" },
+  step_find_friends:{ english:"Tap the search icon 🔍 and type a friend's name.", spanish:"Toca el icono de buscar 🔍 y escribe el nombre de un amigo.", french:"Appuyez sur l'icône de recherche 🔍 et tapez un nom d'ami.", bangla:"সার্চ আইকনে 🔍 চাপুন এবং বন্ধুর নাম লিখুন।", arabic:"اضغط على أيقونة البحث 🔍 واكتب اسم صديق.", chinese:"点击搜索图标🔍，输入朋友的名字。" },
+  step_tap_follow_add:{ english:"Tap 'Follow' or 'Add Friend' next to their name.", spanish:"Toca 'Seguir' o 'Agregar Amigo' junto a su nombre.", french:"Appuyez sur « Suivre » ou « Ajouter un ami » près de leur nom.", bangla:"তার নামের পাশে 'Follow' বা 'Add Friend' চাপুন।", arabic:"اضغط 'متابعة' أو 'إضافة صديق' بجانب اسمه.", chinese:"点击其名字旁的“关注”或“加好友”。" },
+  step_open_feed:{ english:"Open the app to see posts and videos from others.", spanish:"Abre la app para ver publicaciones y videos de otros.", french:"Ouvrez l'application pour voir les publications et vidéos des autres.", bangla:"অন্যদের পোস্ট ও ভিডিও দেখতে অ্যাপটি খুলুন।", arabic:"افتح التطبيق لرؤية منشورات ومقاطع الآخرين.", chinese:"打开应用查看他人的帖子和视频。" },
+  step_scroll_browse:{ english:"Swipe up or down with your finger to see more.", spanish:"Desliza el dedo hacia arriba o abajo para ver más.", french:"Faites glisser votre doigt vers le haut ou le bas pour voir plus.", bangla:"আরও দেখতে আঙুল দিয়ে উপরে বা নিচে সোয়াইপ করুন।", arabic:"مرر إصبعك لأعلى أو لأسفل لرؤية المزيد.", chinese:"用手指上下滑动查看更多内容。" },
+  step_tap_like:{ english:"Tap the heart ❤️ or thumbs-up 👍 to like something you enjoy.", spanish:"Toca el corazón ❤️ o el pulgar 👍 para indicar que te gusta.", french:"Appuyez sur le cœur ❤️ ou le pouce 👍 pour aimer un contenu.", bangla:"পছন্দ হলে হার্ট ❤️ বা থাম্বস-আপ 👍 চাপুন।", arabic:"اضغط على القلب ❤️ أو الإعجاب 👍 لما يعجبك.", chinese:"点击心形❤️或点赞👍表示喜欢。" },
+  step_tap_comment:{ english:"Tap the speech bubble 💬 to write a comment.", spanish:"Toca el globo de diálogo 💬 para escribir un comentario.", french:"Appuyez sur la bulle 💬 pour écrire un commentaire.", bangla:"মন্তব্য লিখতে স্পিচ বাবল 💬-এ চাপুন।", arabic:"اضغط على أيقونة التعليق 💬 لكتابة تعليق.", chinese:"点击对话框💬撰写评论。" },
+  step_tap_share:{ english:"Tap the arrow ➡️ icon to share it with a friend.", spanish:"Toca el icono de flecha ➡️ para compartirlo con un amigo.", french:"Appuyez sur la flèche ➡️ pour le partager avec un ami.", bangla:"বন্ধুর সাথে শেয়ার করতে তীর ➡️ আইকনে চাপুন।", arabic:"اضغط على السهم ➡️ لمشاركته مع صديق.", chinese:"点击箭头➡️图标与朋友分享。" },
+  step_start_post:{ english:"Tap 'What's on your mind?' or the ➕ button to start a new post.", spanish:"Toca '¿Qué estás pensando?' o el botón ➕ para crear una publicación.", french:"Appuyez sur « Une idée à partager ? » ou le bouton ➕ pour publier.", bangla:"'What's on your mind?' বা ➕ বোতামে চাপুন নতুন পোস্ট করতে।", arabic:"اضغط 'بم تفكر؟' أو زر ➕ لبدء منشور جديد.", chinese:"点击“你在想什么？”或➕按钮发布新内容。" },
+  step_add_content:{ english:"Write a short message or choose a photo from your phone.", spanish:"Escribe un mensaje corto o elige una foto de tu teléfono.", french:"Écrivez un court message ou choisissez une photo de votre téléphone.", bangla:"একটি ছোট বার্তা লিখুন বা ফোন থেকে একটি ছবি বেছে নিন।", arabic:"اكتب رسالة قصيرة أو اختر صورة من هاتفك.", chinese:"写一段简短文字或从手机中选一张照片。" },
+  step_publish_post:{ english:"Tap 'Post' or 'Share' so your friends can see it.", spanish:"Toca 'Publicar' o 'Compartir' para que tus amigos lo vean.", french:"Appuyez sur « Publier » ou « Partager » pour que vos amis le voient.", bangla:"বন্ধুরা দেখতে পাবে এমনভাবে 'Post' বা 'Share' চাপুন।", arabic:"اضغط 'نشر' أو 'مشاركة' ليراه أصدقاؤك.", chinese:"点击“发布”或“分享”，让朋友看到。" },
+  step_open_chat:{ english:"Tap the messages icon 💬 to open your conversations.", spanish:"Toca el icono de mensajes 💬 para abrir tus conversaciones.", french:"Appuyez sur l'icône messages 💬 pour ouvrir vos conversations.", bangla:"কথোপকথন খুলতে মেসেজ আইকনে 💬 চাপুন।", arabic:"اضغط على أيقونة الرسائل 💬 لفتح محادثاتك.", chinese:"点击消息图标💬打开对话。" },
+  step_pick_contact:{ english:"Tap on a friend's name to open the chat with them.", spanish:"Toca el nombre de un amigo para abrir el chat con él.", french:"Appuyez sur le nom d'un ami pour ouvrir la discussion.", bangla:"বন্ধুর নামে চাপুন তার সাথে চ্যাট খুলতে।", arabic:"اضغط على اسم صديق لفتح المحادثة معه.", chinese:"点击朋友的名字打开聊天。" },
+  step_type_message:{ english:"Type your message in the text box at the bottom.", spanish:"Escribe tu mensaje en el cuadro de texto de abajo.", french:"Tapez votre message dans la zone de texte en bas.", bangla:"নিচের টেক্সট বক্সে আপনার বার্তা লিখুন।", arabic:"اكتب رسالتك في مربع النص أسفل الشاشة.", chinese:"在底部文本框中输入信息。" },
+  step_send_message:{ english:"Tap the send button ➤ to send your message.", spanish:"Toca el botón de enviar ➤ para enviar tu mensaje.", french:"Appuyez sur le bouton d'envoi ➤ pour envoyer votre message.", bangla:"বার্তা পাঠাতে সেন্ড বোতামে ➤ চাপুন।", arabic:"اضغط على زر الإرسال ➤ لإرسال رسالتك.", chinese:"点击发送按钮➤发送信息。" },
+  step_video_call:{ english:"Tap the camera 📹 icon to start a video call.", spanish:"Toca el icono de cámara 📹 para iniciar una videollamada.", french:"Appuyez sur l'icône caméra 📹 pour démarrer un appel vidéo.", bangla:"ভিডিও কল শুরু করতে ক্যামেরা আইকনে 📹 চাপুন।", arabic:"اضغط على أيقونة الكاميرا 📹 لبدء مكالمة فيديو.", chinese:"点击摄像头📹图标开始视频通话。" },
+  step_open_ai_app:{ english:"Open {app} on your phone or visit its website.", spanish:"Abre {app} en tu teléfono o visita su sitio web.", french:"Ouvrez {app} sur votre téléphone ou visitez son site.", bangla:"আপনার ফোনে {app} খুলুন বা এর ওয়েবসাইট দেখুন।", arabic:"افتح {app} على هاتفك أو زر موقعه الإلكتروني.", chinese:"在手机上打开{app}或访问其网站。" },
+  step_type_question:{ english:"Type your question, like 'What is the weather today?'", spanish:"Escribe tu pregunta, como '¿Qué clima hace hoy?'", french:"Tapez votre question, comme « Quel temps fait-il aujourd'hui ? »", bangla:"আপনার প্রশ্ন লিখুন, যেমন 'আজকের আবহাওয়া কেমন?'", arabic:"اكتب سؤالك، مثل 'كيف حال الطقس اليوم؟'", chinese:"输入你的问题，例如“今天天气怎么样？”" },
+  step_read_answer:{ english:"Read the answer that appears on the screen.", spanish:"Lee la respuesta que aparece en la pantalla.", french:"Lisez la réponse qui apparaît à l'écran.", bangla:"স্ক্রিনে যে উত্তর আসে তা পড়ুন।", arabic:"اقرأ الإجابة التي تظهر على الشاشة.", chinese:"阅读屏幕上出现的答案。" },
+  step_ask_followup:{ english:"You can ask another question any time to learn more.", spanish:"Puedes hacer otra pregunta en cualquier momento para aprender más.", french:"Vous pouvez poser une autre question à tout moment pour en savoir plus.", bangla:"আরও জানতে যেকোনো সময় আরেকটি প্রশ্ন জিজ্ঞাসা করতে পারেন।", arabic:"يمكنك طرح سؤال آخر في أي وقت لمعرفة المزيد.", chinese:"你可以随时提出新的问题来了解更多。" },
+  step_stay_safe_pw:{ english:"Never share your password with anyone, even people you trust.", spanish:"Nunca compartas tu contraseña con nadie, ni siquiera con personas de confianza.", french:"Ne partagez jamais votre mot de passe, même avec des proches.", bangla:"বিশ্বাসী কারো সাথেও পাসওয়ার্ড শেয়ার করবেন না।", arabic:"لا تشارك كلمة مرورك مع أي شخص أبداً، حتى من تثق بهم.", chinese:"永远不要把密码告诉任何人，即使是信任的人。" },
+  step_stay_safe_links:{ english:"Don't click links from strangers or unexpected messages.", spanish:"No hagas clic en enlaces de extraños o mensajes inesperados.", french:"Ne cliquez pas sur des liens d'inconnus ou de messages inattendus.", bangla:"অপরিচিত ব্যক্তির লিংকে বা অপ্রত্যাশিত বার্তায় ক্লিক করবেন না।", arabic:"لا تنقر على روابط من غرباء أو رسائل غير متوقعة.", chinese:"不要点击陌生人发来的链接或异常消息。" },
+  step_stay_safe_block:{ english:"If someone bothers you, tap their name and choose 'Block'.", spanish:"Si alguien te molesta, toca su nombre y elige 'Bloquear'.", french:"Si quelqu'un vous dérange, appuyez sur son nom et choisissez « Bloquer ».", bangla:"কেউ বিরক্ত করলে তার নামে চেপে 'Block' নির্বাচন করুন।", arabic:"إذا أزعجك أحدهم، اضغط على اسمه واختر 'حظر'.", chinese:"如果有人骚扰你，点击其名字并选择“屏蔽”。" },
+  step_watch_video:{ english:"Tap a video's picture to start watching it.", spanish:"Toca la imagen de un video para empezar a verlo.", french:"Appuyez sur l'image d'une vidéo pour la regarder.", bangla:"ভিডিওর ছবিতে চাপুন দেখা শুরু করতে।", arabic:"اضغط على صورة الفيديو لبدء المشاهدة.", chinese:"点击视频封面开始观看。" },
+  step_subscribe:{ english:"Tap 'Subscribe' or 'Follow' to see more from someone you like.", spanish:"Toca 'Suscribirse' o 'Seguir' para ver más de alguien que te guste.", french:"Appuyez sur « S'abonner » ou « Suivre » pour en voir plus.", bangla:"পছন্দের কারো আরও কনটেন্ট দেখতে 'Subscribe' বা 'Follow' চাপুন।", arabic:"اضغط 'اشتراك' أو 'متابعة' لرؤية المزيد ممن يعجبك.", chinese:"点击“订阅”或“关注”以查看更多内容。" },
+
+  // ---- level titles ----
+  lvl_create_account:{ english:"Create Your Account", spanish:"Crea Tu Cuenta", french:"Créez Votre Compte", bangla:"অ্যাকাউন্ট তৈরি করুন", arabic:"أنشئ حسابك", chinese:"创建账户" },
+  lvl_find_friends:{ english:"Find & Follow Friends", spanish:"Encuentra y Sigue Amigos", french:"Trouver et Suivre des Amis", bangla:"বন্ধু খুঁজুন ও ফলো করুন", arabic:"ابحث عن أصدقاء وتابعهم", chinese:"查找并关注好友" },
+  lvl_share_post:{ english:"Share Your First Post", spanish:"Comparte Tu Primera Publicación", french:"Partagez Votre Première Publication", bangla:"প্রথম পোস্ট শেয়ার করুন", arabic:"شارك منشورك الأول", chinese:"分享你的第一条帖子" },
+  lvl_stay_safe:{ english:"Stay Safe Online", spanish:"Mantente Seguro en Línea", french:"Restez en Sécurité en Ligne", bangla:"অনলাইনে নিরাপদ থাকুন", arabic:"ابق آمناً على الإنترنت", chinese:"保持网络安全" },
+  lvl_watch_videos:{ english:"Watch & Enjoy Videos", spanish:"Mira y Disfruta Videos", french:"Regarder et Apprécier des Vidéos", bangla:"ভিডিও দেখুন ও উপভোগ করুন", arabic:"شاهد الفيديوهات واستمتع بها", chinese:"观看并享受视频" },
+  lvl_send_messages:{ english:"Send Messages", spanish:"Enviar Mensajes", french:"Envoyer des Messages", bangla:"বার্তা পাঠান", arabic:"إرسال الرسائل", chinese:"发送消息" },
+  lvl_video_calling:{ english:"Video Calling", spanish:"Videollamadas", french:"Appels Vidéo", bangla:"ভিডিও কলিং", arabic:"مكالمات الفيديو", chinese:"视频通话" },
+  lvl_getting_started_ai:{ english:"Getting Started", spanish:"Primeros Pasos", french:"Premiers Pas", bangla:"শুরু করা", arabic:"البدء", chinese:"入门" },
+  lvl_ask_questions:{ english:"Asking Good Questions", spanish:"Hacer Buenas Preguntas", french:"Poser de Bonnes Questions", bangla:"ভালো প্রশ্ন জিজ্ঞাসা করা", arabic:"طرح أسئلة جيدة", chinese:"提出好问题" },
+
+  // ---- platform intros ----
+  intro_facebook:{ english:"Connect with friends and family, share photos, and send messages.", spanish:"Conéctate con amigos y familia, comparte fotos y envía mensajes.", french:"Restez en contact avec vos proches, partagez des photos et envoyez des messages.", bangla:"বন্ধু ও পরিবারের সাথে সংযুক্ত হন, ছবি শেয়ার করুন এবং বার্তা পাঠান।", arabic:"تواصل مع الأصدقاء والعائلة، وشارك الصور، وأرسل الرسائل.", chinese:"与亲友保持联系，分享照片并发送消息。" },
+  intro_instagram:{ english:"Share photos and videos, and see what friends are up to.", spanish:"Comparte fotos y videos, y mira qué hacen tus amigos.", french:"Partagez photos et vidéos, et suivez vos amis.", bangla:"ছবি ও ভিডিও শেয়ার করুন এবং বন্ধুদের খোঁজ রাখুন।", arabic:"شارك الصور ومقاطع الفيديو، وتابع أخبار أصدقائك.", chinese:"分享照片和视频，了解朋友们的近况。" },
+  intro_tiktok:{ english:"Watch fun short videos made by people around the world.", spanish:"Mira divertidos videos cortos hechos por personas de todo el mundo.", french:"Regardez des vidéos courtes amusantes du monde entier.", bangla:"বিশ্বজুড়ে মানুষের তৈরি মজার শর্ট ভিডিও দেখুন।", arabic:"شاهد مقاطع فيديو قصيرة ممتعة من أشخاص حول العالم.", chinese:"观看世界各地用户制作的有趣短视频。" },
+  intro_youtube:{ english:"Watch videos about anything: cooking, music, news, and more.", spanish:"Mira videos sobre cualquier tema: cocina, música, noticias y más.", french:"Regardez des vidéos sur tout : cuisine, musique, actualités et plus.", bangla:"যেকোনো বিষয়ে ভিডিও দেখুন: রান্না, সঙ্গীত, খবর এবং আরও।", arabic:"شاهد فيديوهات عن أي شيء: الطبخ، الموسيقى، الأخبار، والمزيد.", chinese:"观看各种视频：烹饪、音乐、新闻等等。" },
+  intro_whatsapp:{ english:"Send free messages and make calls to friends and family.", spanish:"Envía mensajes gratis y haz llamadas a amigos y familia.", french:"Envoyez des messages gratuits et appelez vos proches.", bangla:"বন্ধু ও পরিবারকে ফ্রি বার্তা পাঠান এবং কল করুন।", arabic:"أرسل رسائل مجانية وأجرِ مكالمات مع الأصدقاء والعائلة.", chinese:"免费发送消息并与亲友通话。" },
+  intro_messenger:{ english:"Chat with your Facebook friends anytime, anywhere.", spanish:"Chatea con tus amigos de Facebook en cualquier momento y lugar.", french:"Discutez avec vos amis Facebook à tout moment.", bangla:"যেকোনো সময় আপনার ফেসবুক বন্ধুদের সাথে চ্যাট করুন।", arabic:"تحدث مع أصدقائك على فيسبوك في أي وقت وأي مكان.", chinese:"随时随地与Facebook好友聊天。" },
+  intro_chatgpt:{ english:"Ask ChatGPT questions and get helpful answers instantly.", spanish:"Hazle preguntas a ChatGPT y obtén respuestas útiles al instante.", french:"Posez des questions à ChatGPT et obtenez des réponses utiles instantanément.", bangla:"ChatGPT-কে প্রশ্ন করুন এবং তাৎক্ষণিক সহায়ক উত্তর পান।", arabic:"اطرح أسئلة على ChatGPT واحصل على إجابات مفيدة فوراً.", chinese:"向ChatGPT提问，立即获得有用的答案。" },
+  intro_gemini:{ english:"Google's AI assistant that can answer questions and help with tasks.", spanish:"El asistente de IA de Google que responde preguntas y ayuda con tareas.", french:"L'assistant IA de Google qui répond aux questions et aide dans vos tâches.", bangla:"গুগলের এআই সহকারী যা প্রশ্নের উত্তর দেয় ও কাজে সাহায্য করে।", arabic:"مساعد جوجل الذكي الذي يجيب على الأسئلة ويساعد في المهام.", chinese:"谷歌的AI助手，可以回答问题并协助完成任务。" },
+  intro_metaai:{ english:"Meta's AI assistant available inside Facebook, Instagram, and WhatsApp.", spanish:"El asistente de IA de Meta disponible en Facebook, Instagram y WhatsApp.", french:"L'assistant IA de Meta disponible dans Facebook, Instagram et WhatsApp.", bangla:"ফেসবুক, ইনস্টাগ্রাম ও হোয়াটসঅ্যাপে থাকা মেটার এআই সহকারী।", arabic:"مساعد Meta الذكي المتوفر داخل فيسبوك وإنستغرام وواتساب.", chinese:"Meta的AI助手，可在Facebook、Instagram和WhatsApp中使用。" },
+};
+
+let currentLang = localStorage.getItem("lc_lang") || "english";
+function t(key, vars){
+  const entry = S[key];
+  let str = entry ? (entry[currentLang] || entry.english) : key;
+  if (vars) Object.keys(vars).forEach(k => { str = str.replace("{"+k+"}", vars[k]); });
+  return str;
+}
+function refreshEmoji(){
+  // Converts 🔊 👆 ⭐ etc. into real downloaded Twemoji images so they
+  // look the same, and actually show up, on every device.
+  if (window.twemoji) twemoji.parse(document.body, { className: "emoji" });
+}
+
+/* =====================================================================
+   2. PLATFORM & LESSON DATA
+   ===================================================================== */
+const PLATFORMS = {
+  facebook:{ name:"Facebook", logo:"facebook", emoji:"📘", cls:"pc-facebook", intro:"intro_facebook", ai:false,
+    levels:[
+      { id:"fb-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
+        steps:[ "step_open_app","step_tap_signup","step_enter_info","step_confirm_signup" ] },
+      { id:"fb-2", titleKey:"lvl_find_friends", icon:"🤝", points:100, difficulty:"Easy",
+        steps:[ "step_find_friends","step_tap_follow_add" ] },
+      { id:"fb-3", titleKey:"lvl_share_post", icon:"📤", points:120, difficulty:"Medium",
+        steps:[ "step_start_post","step_add_content","step_publish_post" ] },
+      { id:"fb-4", titleKey:"lvl_stay_safe", icon:"🛡️", points:150, difficulty:"Hard",
+        steps:[ "step_stay_safe_pw","step_stay_safe_links","step_stay_safe_block" ] },
+    ]},
+  instagram:{ name:"Instagram", logo:"instagram", emoji:"📸", cls:"pc-instagram", intro:"intro_instagram", ai:false,
+    levels:[
+      { id:"ig-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
+        steps:[ "step_open_app","step_tap_signup","step_enter_info","step_confirm_signup" ] },
+      { id:"ig-2", titleKey:"lvl_find_friends", icon:"🤝", points:100, difficulty:"Easy",
+        steps:[ "step_find_friends","step_tap_follow_add" ] },
+      { id:"ig-3", titleKey:"lvl_share_post", icon:"📸", points:120, difficulty:"Medium",
+        steps:[ "step_start_post","step_add_content","step_publish_post" ] },
+    ]},
+  tiktok:{ name:"TikTok", logo:"tiktok", invert:true, emoji:"🎵", cls:"pc-tiktok", intro:"intro_tiktok", ai:false,
+    levels:[
+      { id:"tt-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
+        steps:[ "step_open_app","step_tap_signup","step_enter_info","step_confirm_signup" ] },
+      { id:"tt-2", titleKey:"lvl_watch_videos", icon:"🎬", points:100, difficulty:"Easy",
+        steps:[ "step_scroll_browse","step_tap_like","step_tap_comment" ] },
+    ]},
+  youtube:{ name:"YouTube", logo:"youtube", emoji:"▶️", cls:"pc-youtube", intro:"intro_youtube", ai:false,
+    levels:[
+      { id:"yt-1", titleKey:"lvl_watch_videos", icon:"🎬", points:100, difficulty:"Easy",
+        steps:[ "step_watch_video","step_tap_like","step_tap_comment" ] },
+      { id:"yt-2", titleKey:"lvl_find_friends", icon:"🔔", points:100, difficulty:"Medium",
+        steps:[ "step_find_friends","step_subscribe" ] },
+    ]},
+  whatsapp:{ name:"WhatsApp", logo:"whatsapp", emoji:"💬", cls:"pc-whatsapp", intro:"intro_whatsapp", ai:false,
+    levels:[
+      { id:"wa-1", titleKey:"lvl_create_account", icon:"📝", points:100, difficulty:"Easy",
+        steps:[ "step_open_app","step_enter_info","step_confirm_signup" ] },
+      { id:"wa-2", titleKey:"lvl_send_messages", icon:"💬", points:100, difficulty:"Easy",
+        steps:[ "step_open_chat","step_pick_contact","step_type_message","step_send_message" ] },
+      { id:"wa-3", titleKey:"lvl_video_calling", icon:"📹", points:130, difficulty:"Medium",
+        steps:[ "step_pick_contact","step_video_call" ] },
+    ]},
+  messenger:{ name:"Messenger", logo:"messenger", emoji:"✉️", cls:"pc-messenger", intro:"intro_messenger", ai:false,
+    levels:[
+      { id:"ms-1", titleKey:"lvl_send_messages", icon:"💬", points:100, difficulty:"Easy",
+        steps:[ "step_open_chat","step_pick_contact","step_type_message","step_send_message" ] },
+      { id:"ms-2", titleKey:"lvl_video_calling", icon:"📹", points:130, difficulty:"Medium",
+        steps:[ "step_pick_contact","step_video_call" ] },
+    ]},
+  chatgpt:{ name:"ChatGPT", logo:"openai", emoji:"🤖", cls:"pc-chatgpt", intro:"intro_chatgpt", ai:true,
+    levels:[
+      { id:"gpt-1", titleKey:"lvl_getting_started_ai", icon:"🌐", points:100, difficulty:"Easy",
+        steps:[ "step_open_ai_app","step_type_question","step_read_answer" ] },
+      { id:"gpt-2", titleKey:"lvl_ask_questions", icon:"💡", points:120, difficulty:"Medium",
+        steps:[ "step_type_question","step_read_answer","step_ask_followup" ] },
+    ]},
+  gemini:{ name:"Gemini", logo:"googlegemini", emoji:"✨", cls:"pc-gemini", intro:"intro_gemini", ai:true,
+    levels:[
+      { id:"gem-1", titleKey:"lvl_getting_started_ai", icon:"🌐", points:100, difficulty:"Easy",
+        steps:[ "step_open_ai_app","step_type_question","step_read_answer" ] },
+      { id:"gem-2", titleKey:"lvl_ask_questions", icon:"💡", points:120, difficulty:"Medium",
+        steps:[ "step_type_question","step_read_answer","step_ask_followup" ] },
+    ]},
+  metaai:{ name:"Meta AI", logo:"meta", emoji:"🧠", cls:"pc-metaai", intro:"intro_metaai", ai:true,
+    levels:[
+      { id:"mai-1", titleKey:"lvl_getting_started_ai", icon:"🌐", points:100, difficulty:"Easy",
+        steps:[ "step_open_ai_app","step_type_question","step_read_answer" ] },
+      { id:"mai-2", titleKey:"lvl_ask_questions", icon:"💡", points:120, difficulty:"Medium",
+        steps:[ "step_type_question","step_read_answer","step_ask_followup" ] },
+    ]},
+};
+
+/* =====================================================================
+   2b. STEP VISUALS — a small phone mockup with a glowing, pulsing icon
+   and a gesture cue (tap / type / swipe / read). Lets someone follow
+   the lesson by LOOKING, even if they can't read the text at all.
+   ===================================================================== */
+const STEP_VISUALS = {
+  step_open_app:        { mode:"click", rows:[{emoji:"📱", label:"lbl_open_app"}], hot:0 },
+  step_tap_signup:       { mode:"click", rows:[{emoji:"🏠", muted:true, label:"lbl_home"},{emoji:"➕", label:"lbl_signup"}], hot:1 },
+  step_enter_info:       { mode:"type",  rows:[{emoji:"👤", label:"lbl_name"},{emoji:"✉️", label:"lbl_email"},{emoji:"🔒", label:"lbl_password"}] },
+  step_confirm_signup:   { mode:"click", rows:[{emoji:"👤", muted:true, label:"lbl_name"},{emoji:"✉️", muted:true, label:"lbl_email"},{emoji:"✅", label:"lbl_confirm"}], hot:2 },
+  step_find_friends:     { mode:"click", rows:[{emoji:"🔍", label:"lbl_search"}], hot:0 },
+  step_tap_follow_add:   { mode:"click", rows:[{emoji:"👤", muted:true, label:"lbl_friend"},{emoji:"➕", label:"lbl_follow"}], hot:1 },
+  step_open_feed:        { mode:"simple", emoji:"🖼️", color:"#233A66", gesture:"read", label:"lbl_feed" },
+  step_scroll_browse:    { mode:"simple", emoji:"↕️", color:"#233A66", gesture:"swipe", label:"lbl_scroll" },
+  step_tap_like:         { mode:"click", rows:[{emoji:"💬", muted:true, label:"lbl_comment"},{emoji:"❤️", label:"lbl_like"},{emoji:"➡️", muted:true, label:"lbl_share"}], hot:1 },
+  step_tap_comment:      { mode:"click", rows:[{emoji:"💬", label:"lbl_comment"},{emoji:"❤️", muted:true, label:"lbl_like"},{emoji:"➡️", muted:true, label:"lbl_share"}], hot:0 },
+  step_tap_share:        { mode:"click", rows:[{emoji:"💬", muted:true, label:"lbl_comment"},{emoji:"❤️", muted:true, label:"lbl_like"},{emoji:"➡️", label:"lbl_share"}], hot:2 },
+  step_start_post:       { mode:"click", rows:[{emoji:"➕", label:"lbl_new_post"}], hot:0 },
+  step_add_content:      { mode:"type",  rows:[{emoji:"🖼️", label:"lbl_photo"},{emoji:"📝", label:"lbl_caption"}] },
+  step_publish_post:     { mode:"click", rows:[{emoji:"📝", muted:true, label:"lbl_caption"},{emoji:"📤", label:"lbl_post"}], hot:1 },
+  step_open_chat:        { mode:"click", rows:[{emoji:"💬", label:"lbl_messages"}], hot:0 },
+  step_pick_contact:     { mode:"click", rows:[{emoji:"👤", muted:true, label:"lbl_contact"},{emoji:"👤", label:"lbl_contact"},{emoji:"👤", muted:true, label:"lbl_contact"}], hot:1 },
+  step_type_message:     { mode:"type",  rows:[{emoji:"⌨️", label:"lbl_message"}] },
+  step_send_message:     { mode:"click", rows:[{emoji:"⌨️", muted:true, label:"lbl_message"},{emoji:"📤", label:"lbl_send"}], hot:1 },
+  step_video_call:       { mode:"click", rows:[{emoji:"📞", muted:true, label:"lbl_call"},{emoji:"📹", label:"lbl_video_call"}], hot:1 },
+  step_open_ai_app:      { mode:"click", rows:[{emoji:"🤖", label:"lbl_chat"}], hot:0 },
+  step_type_question:    { mode:"type",  rows:[{emoji:"⌨️", label:"lbl_question"}] },
+  step_read_answer:      { mode:"simple", emoji:"📄", color:"#233A66", gesture:"read", label:"lbl_answer" },
+  step_ask_followup:     { mode:"click", rows:[{emoji:"💬", label:"lbl_ask_more"}], hot:0 },
+  step_stay_safe_pw:     { mode:"simple", emoji:"🔒", color:"#E67E22", gesture:"none", label:"lbl_password" },
+  step_stay_safe_links:  { mode:"simple", emoji:"⚠️", color:"#E67E22", gesture:"none", label:"lbl_warning" },
+  step_stay_safe_block:  { mode:"click", rows:[{emoji:"👤", muted:true, label:"lbl_contact"},{emoji:"🚫", label:"lbl_block"}], hot:1 },
+  step_watch_video:      { mode:"click", rows:[{emoji:"▶️", label:"lbl_play"}], hot:0 },
+  step_subscribe:        { mode:"click", rows:[{emoji:"👤", muted:true, label:"lbl_creator"},{emoji:"🔔", label:"lbl_subscribe"}], hot:1 },
+};
+const GESTURE_EMOJI = { tap:"👆", type:"⌨️", read:"👀", swipe:"✋" };
+
+/* ---- OPTIONAL real screenshots ----
+   Drop your own screenshot files into an "images" folder next to this
+   HTML file, then reference them here as:
+     STEP_IMAGES.facebook.step_tap_signup = "images/facebook-signup.png";
+   If a platform+step combination isn't listed here, the app automatically
+   falls back to the drawn phone-mockup above — nothing breaks either way.
+   (Using your own screenshots avoids relying on other websites' images,
+   which can break, change, or raise copyright questions since you didn't
+   take them yourself.) */
+const STEP_IMAGES = {
+  facebook: {
+    step_open_app: "https://cdn-icons-png.flaticon.com/512/124/124010.png",
+    step_tap_signup: "https://www.wikihow.com/images/thumb/b/bc/Set-up-a-Facebook-Account-Step-2-Version-5.jpg/v4-460px-Set-up-a-Facebook-Account-Step-2-Version-5.jpg",
+    step_enter_info: "https://53.fs1.hubspotusercontent-na1.net/hubfs/53/how-to-use-facebook-2-20241004-3378231.webp",
+    step_start_post: "https://cdn-icons-png.flaticon.com/512/1828/1828919.png",
+    step_add_content: "https://ineasysteps.com/wp-content/uploads/2022/02/Page-42-create-post.jpg",
+    step_stay_safe_block: "https://helios-i.mashable.com/imagery/articles/03riLdcWkgmhf1y6HnzKmJB/images-33.fill.size_2000x1761.v1623461439.jpg",
+  },
+  instagram: {
+    step_open_app: "https://cdn-icons-png.flaticon.com/512/888/888115.png",
+    step_tap_signup: "https://cdn-icons-png.flaticon.com/512/3524/3524659.png",
+    step_enter_info: "https://cdn-icons-png.flaticon.com/512/847/847969.png",
+    step_find_friends: "https://cdn-icons-png.flaticon.com/512/482/482631.png",
+    step_tap_follow_add: "https://img.icons8.com/color/512/plus-math.png",
+    step_open_feed: "https://cdn-icons-png.flaticon.com/512/1087/1087815.png",
+  },
+  chatgpt: {
+    step_open_ai_app: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/512px-ChatGPT_logo.svg.png",
+    step_type_question: "https://cdn-icons-png.flaticon.com/512/616/616487.png",
+  },
+  tiktok: { step_open_app: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/tiktok.svg" },
+  youtube: { step_watch_video: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/youtube.svg" },
+  whatsapp: { step_open_app: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/whatsapp.svg" },
+  messenger: { step_open_chat: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/messenger.svg" },
+  gemini: { step_open_ai_app: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/googlegemini.svg" },
+  metaai: { step_open_ai_app: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/meta.svg" },
+  // Add more here the same way — anything not listed just falls back to
+  // the drawn phone-mockup automatically, so it's always safe to extend.
+};
+
+function renderStepVisual(key, platformKey){
+  const customImage = STEP_IMAGES[platformKey] && STEP_IMAGES[platformKey][key];
+  if (customImage){
+    // A real photo/screenshot, shown big and full-width — like your
+    // original file's lesson-image style — not squeezed into a small mockup.
+    return `<img src="${customImage}" alt="" class="lesson-image"
+      onerror="this.outerHTML = renderStepVisual('${key}', null)">`;
+  }
+  const v = STEP_VISUALS[key] || { mode:"click", rows:[{emoji:"👆"}], hot:0 };
+  let inner;
+
+  if (v.mode === "click"){
+    // Realistic-looking rows (like real form fields/buttons), each with a
+    // real text label — e.g. "Password", "Sign Up" — not just an icon. The
+    // correct one to tap is outlined in RED with a glow and a hand.
+    inner = `<div class="ui-screen">` + v.rows.map((r, i) => {
+      const isHot = i === v.hot;
+      const bg = r.muted ? "#EEF0F4" : (isHot ? "#FF3B30" : "#233A66");
+      const textColor = r.muted ? "#5B6472" : "#fff";
+      return `<div class="ui-row ${isHot ? "ui-row--hot" : ""}" style="background:${bg}">
+        <span class="ui-row__emoji">${r.emoji}</span>
+        <span class="ui-row__label" style="color:${textColor}">${t(r.label)}</span>
+        ${isHot ? `<span class="ui-row__hand">👆</span>` : ""}
+      </div>`;
+    }).join("") + `</div>`;
+  } else if (v.mode === "type"){
+    inner = `<div class="ui-screen">` +
+      v.rows.map(r => `<div class="ui-row" style="background:#EEF0F4">
+        <span class="ui-row__emoji">${r.emoji}</span>
+        <span class="ui-row__label" style="color:#5B6472">${t(r.label)}</span>
+      </div>`).join("") +
+      `<div class="type-cue">⌨️</div></div>`;
+  } else {
+    // simple centered icon fallback (read / swipe / informational steps),
+    // now with a real text label underneath (e.g. "Warning", "Answer").
+    const gestureHtml = v.gesture && v.gesture !== "none"
+      ? `<div class="phone-mock__gesture ${v.gesture}">${GESTURE_EMOJI[v.gesture]}</div>` : "";
+    inner = `<div class="simple-visual">
+      <div class="simple-visual__iconwrap">
+        <div class="phone-mock__ring" style="border-color:${v.color}"></div>
+        <div class="phone-mock__icon" style="background:${v.color}"><span class="ui-row__emoji">${v.emoji}</span></div>
+        ${gestureHtml}
+      </div>
+      <div class="simple-visual__label">${t(v.label)}</div>
+    </div>`;
+  }
+
+  return `<div class="phone-mock"><div class="phone-mock__notch"></div>
+    <div class="phone-mock__screen">${inner}</div></div>`;
+}
+
+/* =====================================================================
+   3. STATE (persisted with localStorage)
+   ===================================================================== */
+let state = JSON.parse(localStorage.getItem("lc_state") || "null") || {
+  points:0, completed:{}, unlocked:{}, // unlocked["ig-2"] = true once bought with points
+};
+// Migrate older saved progress that predates the "unlocked" field
+if (!state.completed) state.completed = {};
+if (!state.unlocked) state.unlocked = {};
+if (typeof state.points !== "number") state.points = 0;
+function saveState(){ localStorage.setItem("lc_state", JSON.stringify(state)); }
+
+let fontScale = parseFloat(localStorage.getItem("lc_font") || "1");
+document.documentElement.style.setProperty("--font-scale", fontScale);
+function changeFontScale(delta){
+  fontScale = Math.min(1.4, Math.max(0.85, fontScale + delta));
+  document.documentElement.style.setProperty("--font-scale", fontScale);
+  localStorage.setItem("lc_font", fontScale);
+}
+
+/* =====================================================================
+   4. RENDERING
+   ===================================================================== */
+function renderHome(){
+  const grid = document.getElementById("platforms-grid");
+  grid.innerHTML = "";
+  Object.entries(PLATFORMS).forEach(([key, p]) => {
+    const totalLevels = p.levels.length;
+    const doneLevels = p.levels.filter(l => state.completed[l.id]).length;
+    const card = document.createElement("div");
+    card.className = "platform-card " + p.cls + (p.ai ? " ai-card" : "");
+    card.onclick = () => openPlatform(key);
+    card.innerHTML = `
+      ${p.ai ? `<div class="ai-tag">AI</div>` : ""}
+      <div class="platform-icon">${p.logo
+      ? `<img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/${p.logo}.svg" alt="" class="platform-icon__img${p.invert ? ' platform-icon__img--invert' : ''}" onerror="this.outerHTML='${p.emoji}'">`
+      : p.emoji}</div>
+      <h3>${p.name}</h3>
+      <div class="progress-pill">${doneLevels}/${totalLevels} ✅</div>`;
+    grid.appendChild(card);
+  });
+  document.getElementById("stat-points").textContent = state.points;
+  document.getElementById("stat-lessons").textContent = Object.keys(state.completed).length;
+  refreshEmoji();
+}
+
+let activePlatformKey = null;
+function openPlatform(key){
+  activePlatformKey = key;
+  const p = PLATFORMS[key];
+  document.getElementById("course-title").textContent = p.name;
+  document.getElementById("course-intro").textContent = t(p.intro);
+  const list = document.getElementById("levels-list");
+  list.innerHTML = "";
+  p.levels.forEach((lvl, idx) => {
+    const cost = idx === 0 ? 0 : p.levels[idx-1].points; // unlock cost = points earned from the previous level
+    const isDone = !!state.completed[lvl.id];
+    const isUnlocked = idx === 0 || isDone || !!state.unlocked[lvl.id];
+    const canAfford = state.points >= cost;
+    const card = document.createElement("div");
+    card.className = "level-card" + (!isUnlocked ? " locked" : "") + (isDone ? " done" : "");
+    card.onclick = () => {
+      if (isUnlocked){ openLesson(key, lvl.id); return; }
+      if (!canAfford){ showToast(t("need_more_points", { n: cost - state.points })); return; }
+      if (confirm(t("confirm_unlock", { n: cost }))){
+        state.points -= cost;
+        state.unlocked[lvl.id] = true;
+        saveState();
+        openPlatform(key);
+      }
+    };
+    const lockLine = !isUnlocked
+      ? `<div class="level-meta" style="color:${canAfford ? '#3FAE58' : '#C0392B'}">${canAfford ? t("unlock_for_points",{n:cost}) : t("points_short",{n:cost - state.points})}</div>`
+      : "";
+    card.innerHTML = `
+      <div class="level-num">${isDone ? "✅" : (idx+1)}</div>
+      <div class="level-body">
+        <h3>${t(lvl.titleKey)}</h3>
+        <div class="level-meta"><span>⭐ ${lvl.points} pts</span><span>${lvl.difficulty}</span></div>
+        ${lockLine}
+      </div>
+      ${!isUnlocked ? `<div class="lock-flag">🔒</div>` : ""}`;
+    list.appendChild(card);
+  });
+  showScreen("screen-course");
+  refreshEmoji();
+}
+
+function showHome(){ renderHome(); showScreen("screen-home"); }
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+/* ---- lesson modal ---- */
+let activeLesson = null, activeStep = 0;
+function openLesson(platformKey, levelId){
+  const p = PLATFORMS[platformKey];
+  const lvl = p.levels.find(l => l.id === levelId);
+  activeLesson = { platformKey, lvl, appName: p.name };
+  activeStep = 0;
+  renderStep();
+  document.getElementById("lesson-modal").classList.add("active");
+}
+function closeLesson(){
+  document.getElementById("lesson-modal").classList.remove("active");
+  AppSpeech.stop();
+  activeLesson = null;
+}
+function renderStep(){
+  const { lvl, appName } = activeLesson;
+  const steps = lvl.steps;
+  const key = steps[activeStep];
+  document.getElementById("step-visual").innerHTML = renderStepVisual(key, activeLesson.platformKey);
+  document.getElementById("step-title").textContent = t(lvl.titleKey) + " (" + (activeStep+1) + "/" + steps.length + ")";
+  document.getElementById("step-content").textContent = t(key, { app: appName });
+
+  const dots = document.getElementById("step-progress");
+  dots.innerHTML = "";
+  steps.forEach((_, i) => {
+    const d = document.createElement("div");
+    d.className = "step-dot" + (i <= activeStep ? " filled" : "");
+    dots.appendChild(d);
+  });
+
+  document.getElementById("btn-prev").disabled = activeStep === 0;
+  const nextBtn = document.getElementById("btn-next");
+  nextBtn.textContent = (activeStep === steps.length - 1) ? t("finish_btn") : t("next_btn");
+  AppSpeech.stop();
+  refreshEmoji();
+}
+function prevStep(){ if (activeStep > 0){ activeStep--; renderStep(); } }
+function nextStep(){
+  const steps = activeLesson.lvl.steps;
+  if (activeStep < steps.length - 1){ activeStep++; renderStep(); }
+  else { finishLesson(); }
+}
+function finishLesson(){
+  const { lvl } = activeLesson;
+  const already = !!state.completed[lvl.id];
+  if (!already){
+    state.completed[lvl.id] = true;
+    state.points += lvl.points;
+    saveState();
+  }
+  document.getElementById("lesson-modal").classList.remove("active");
+  document.getElementById("reward-points").textContent = already ? 0 : lvl.points;
+  document.getElementById("reward-message").textContent = t("lesson_complete_msg");
+  document.getElementById("reward-modal").classList.add("active");
+}
+function closeReward(){
+  document.getElementById("reward-modal").classList.remove("active");
+  openPlatform(activeLesson.platformKey);
+}
+
+/* ---- language modal ---- */
+function openLanguageModal(){
+  const grid = document.getElementById("lang-grid");
+  grid.innerHTML = "";
+  Object.entries(LANGS).forEach(([key, meta]) => {
+    const btn = document.createElement("button");
+    btn.className = "lang-btn" + (key === currentLang ? " active" : "");
+    btn.textContent = meta.label;
+    btn.onclick = () => { setLanguage(key); closeLanguageModal(); };
+    grid.appendChild(btn);
+  });
+  const checkBtn = document.createElement("button");
+  checkBtn.className = "lang-btn";
+  checkBtn.style.cssText = "border-style:dashed;color:#666;font-size:.85rem;";
+  checkBtn.textContent = "🔍 Check voices installed on this device";
+  checkBtn.onclick = showInstalledVoices;
+  grid.appendChild(checkBtn);
+  document.getElementById("language-modal").classList.add("active");
+  refreshEmoji();
+}
+async function showInstalledVoices(){
+  const voices = await AppSpeech.waitForVoices();
+  if (!voices.length){ showToast("This browser reports no voices at all — read-aloud may not work here."); return; }
+  const langsFound = [...new Set(voices.map(v => v.lang))].sort();
+  const supported = Object.values(LANGS).map(l => l.bcp47);
+  const have = supported.filter(code => langsFound.some(l => l.toLowerCase().startsWith(code.split("-")[0].toLowerCase())));
+  const missing = supported.filter(code => !have.includes(code));
+  let msg = "Voices found on this device: " + langsFound.join(", ") + ".\n\n";
+  msg += "App languages WITH real speech: " + (have.length ? have.map(c => LANGS_BY_CODE(c)).join(", ") : "none") + "\n";
+  msg += "App languages that will fall back to a default voice: " + (missing.length ? missing.map(c => LANGS_BY_CODE(c)).join(", ") : "none");
+  alert(msg);
+}
+function LANGS_BY_CODE(code){
+  const found = Object.values(LANGS).find(l => l.bcp47 === code);
+  return found ? found.label : code;
+}
+function closeLanguageModal(){ document.getElementById("language-modal").classList.remove("active"); }
+function setLanguage(lang){
+  currentLang = lang;
+  localStorage.setItem("lc_lang", lang);
+  const meta = LANGS[lang];
+  document.documentElement.setAttribute("lang", meta.bcp47.split("-")[0]);
+  document.documentElement.setAttribute("dir", meta.dir);
+  applyStaticTranslations();
+  renderHome();
+  if (activePlatformKey && document.getElementById("screen-course").classList.contains("active")) openPlatform(activePlatformKey);
+  if (activeLesson) renderStep();
+}
+function applyStaticTranslations(){
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    el.textContent = t(el.getAttribute("data-i18n"));
+  });
+}
+
+/* =====================================================================
+   5. READ ALOUD (TEXT-TO-SPEECH)
+   Uses the phone/browser's built-in voice now. If you later add a cloud
+   voice backend, set window.CLOUD_TTS_ENDPOINT to a URL that accepts
+   { text, language } and returns an audio file — this code will use it
+   automatically and fall back to the free voice if it's unavailable.
+   ===================================================================== */
+const AppSpeech = {
+  synth: window.speechSynthesis, audio:null, speaking:false, rate:0.85,
+  voicesReady:false,
+  waitForVoices(){
+    return new Promise(resolve => {
+      const existing = this.synth ? this.synth.getVoices() : [];
+      if (existing.length > 0){ resolve(existing); return; }
+      if (!this.synth){ resolve([]); return; }
+      const timeout = setTimeout(() => resolve(this.synth.getVoices()), 1200);
+      this.synth.onvoiceschanged = () => { clearTimeout(timeout); resolve(this.synth.getVoices()); };
+    });
+  },
+  collectVisibleText(){
+    if (document.getElementById("lesson-modal").classList.contains("active")){
+      return [document.getElementById("step-title").textContent, document.getElementById("step-content").textContent].join(". ");
+    }
+    if (document.getElementById("reward-modal").classList.contains("active")){
+      return document.getElementById("reward-message").textContent;
+    }
+    if (document.getElementById("screen-course").classList.contains("active")){
+      return document.getElementById("course-title").textContent + ". " + document.getElementById("course-intro").textContent;
+    }
+    return t("app_title") + ". " + t("main_goal");
+  },
+  async speak(text){
+    this.stop();
+    if (!text) return;
+    if (window.CLOUD_TTS_ENDPOINT){
+      try{
+        const meta = LANGS[currentLang];
+        const res = await fetch(window.CLOUD_TTS_ENDPOINT, { method:"POST",
+          headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ text, language: meta.bcp47 }) });
+        if (!res.ok) throw new Error("cloud tts failed");
+        const blob = await res.blob();
+        this.audio = new Audio(URL.createObjectURL(blob));
+        this.audio.playbackRate = this.rate;
+        this.audio.onended = () => { this.speaking = false; updateFab(false); };
+        this.speaking = true; updateFab(true);
+        await this.audio.play();
+        return;
+      } catch(e){ console.warn("Cloud TTS unavailable, using browser voice.", e); }
+    }
+    if (!this.synth){ alert("Read-aloud isn't supported on this browser."); return; }
+    const meta = LANGS[currentLang];
+    const voices = await this.waitForVoices();
+    const exactMatch = voices.find(v => v.lang === meta.bcp47);
+    const looseMatch = voices.find(v => v.lang && v.lang.toLowerCase().startsWith(meta.bcp47.split("-")[0].toLowerCase()));
+    const match = exactMatch || looseMatch;
+
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.rate = this.rate;
+    if (match){
+      // A voice for this language is installed on the device — use it.
+      utter.voice = match;
+      utter.lang = match.lang;
+    } else {
+      // No voice installed for this language: DO NOT set utter.lang to the
+      // unsupported code, or some browsers (esp. Chrome/Android) silently
+      // refuse to speak at all. Fall back to the device's default voice
+      // instead, so the person still hears something rather than silence.
+      if (voices.length) utter.voice = voices.find(v => v.default) || voices[0];
+      console.warn(`No installed voice for ${meta.bcp47} — using default voice as fallback.`);
+      showToast(`No ${meta.label.replace(/^\S+\s/, "")} voice is installed on this device — playing in the default voice instead.`);
+    }
+    utter.onend = () => { this.speaking = false; updateFab(false); };
+    utter.onerror = () => { this.speaking = false; updateFab(false); };
+    this.speaking = true; updateFab(true);
+    this.synth.speak(utter);
+  },
+  stop(){ if (this.synth) this.synth.cancel(); if (this.audio){ this.audio.pause(); this.audio = null; } this.speaking = false; updateFab(false); }
+};
+function updateFab(isSpeaking){
+  const fab = document.getElementById("fab-speak");
+  fab.textContent = isSpeaking ? "⏹" : "🔊";
+  fab.classList.toggle("speaking", isSpeaking);
+}
+function toggleSpeak(){ AppSpeech.speaking ? AppSpeech.stop() : AppSpeech.speak(AppSpeech.collectVisibleText()); }
+function speakVisible(){ AppSpeech.speak(AppSpeech.collectVisibleText()); }
+
+let toastTimer = null;
+function showToast(msg){
+  let toast = document.getElementById("app-toast");
+  if (!toast){
+    toast = document.createElement("div");
+    toast.id = "app-toast";
+    toast.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);"+
+      "background:#20263B;color:#fff;padding:12px 18px;border-radius:14px;max-width:88%;"+
+      "font-size:.85rem;text-align:center;z-index:2200;box-shadow:0 8px 20px rgba(0,0,0,.35);";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.display = "block";
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.style.display = "none"; }, 4500);
+  refreshEmoji();
+}
+
+/* =====================================================================
+   6. INIT
+   ===================================================================== */
+document.documentElement.setAttribute("lang", LANGS[currentLang].bcp47.split("-")[0]);
+document.documentElement.setAttribute("dir", LANGS[currentLang].dir);
+applyStaticTranslations();
+renderHome();
+refreshEmoji();
+if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+</script>
+</body>
+</html>
