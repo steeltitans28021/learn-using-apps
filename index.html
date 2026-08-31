@@ -150,6 +150,14 @@
   .simple-visual{ display:flex; flex-direction:column; align-items:center; gap:12px; }
   .simple-visual__iconwrap{ position:relative; width:78px; height:78px; }
   .simple-visual__label{ font-size:1.05rem; font-weight:700; color:#233A66; text-align:center; }
+
+  /* ---------- Platform-branded frame (real header color/name/icon) ---------- */
+  .app-header{ height:34px; border-radius:14px 14px 0 0; margin:-12px -10px 10px; display:flex;
+    align-items:center; justify-content:center; gap:6px; color:#fff; font-weight:800; font-size:.95rem; }
+  .app-header__icon{ font-size:1.1rem; }
+  .tiktok-rail{ position:absolute; right:8px; bottom:14px; display:flex; flex-direction:column; gap:14px;
+    font-size:1.3rem; filter:drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
+  .yt-watermark{ position:absolute; top:8px; right:10px; font-size:1.4rem; opacity:.5; }
   /* Real emoji images (Twemoji) instead of relying on the device's font */
   img.emoji{ height:1em; width:1em; margin:0 .05em 0 .1em; vertical-align:-0.15em; }
   .step-title{ text-align:center; font-size:1.15rem; font-weight:700; color:var(--navy); margin-bottom:10px; }
@@ -296,6 +304,7 @@ const S = {
   locked_msg:{ english:"Finish the lesson above first to unlock this one.", spanish:"Termina la lección anterior para desbloquear esta.", french:"Terminez la leçon précédente pour débloquer celle-ci.", bangla:"এটি আনলক করতে আগের পাঠটি শেষ করুন।", arabic:"أكمل الدرس السابق أولاً لفتح هذا الدرس.", chinese:"请先完成上一课以解锁本课。" },
   need_more_points:{ english:"You need {n} more points to unlock this. Finish other lessons to earn points!", spanish:"Necesitas {n} puntos más para desbloquear esto. ¡Termina otras lecciones para ganar puntos!", french:"Il vous faut {n} points de plus pour débloquer ceci. Terminez d'autres leçons pour gagner des points !", bangla:"এটি আনলক করতে আপনার আরও {n} পয়েন্ট দরকার। পয়েন্ট অর্জন করতে অন্য পাঠ শেষ করুন!", arabic:"تحتاج إلى {n} نقاط إضافية لفتح هذا. أكمل دروسًا أخرى لكسب النقاط!", chinese:"你还需要{n}积分才能解锁。完成其他课程来获得积分吧！" },
   confirm_unlock:{ english:"Use {n} of your points to unlock this lesson?", spanish:"¿Usar {n} de tus puntos para desbloquear esta lección?", french:"Utiliser {n} de vos points pour débloquer cette leçon ?", bangla:"এই পাঠ আনলক করতে আপনার {n} পয়েন্ট ব্যবহার করবেন?", arabic:"هل تريد استخدام {n} من نقاطك لفتح هذا الدرس؟", chinese:"使用{n}积分解锁这节课吗？" },
+  unlocked_msg:{ english:"Unlocked using {n} points! 🎉", spanish:"¡Desbloqueado usando {n} puntos! 🎉", french:"Débloqué avec {n} points ! 🎉", bangla:"{n} পয়েন্ট ব্যবহার করে আনলক হয়েছে! 🎉", arabic:"تم الفتح باستخدام {n} نقطة! 🎉", chinese:"已使用{n}积分解锁！🎉" },
   unlock_for_points:{ english:"🔓 Unlock for {n} points", spanish:"🔓 Desbloquear por {n} puntos", french:"🔓 Débloquer pour {n} points", bangla:"🔓 {n} পয়েন্টে আনলক করুন", arabic:"🔓 افتح مقابل {n} نقطة", chinese:"🔓 花费{n}积分解锁" },
   points_short:{ english:"Need {n} more points", spanish:"Faltan {n} puntos", french:"Encore {n} points nécessaires", bangla:"আরও {n} পয়েন্ট দরকার", arabic:"يلزم {n} نقاط إضافية", chinese:"还差{n}积分" },
 
@@ -516,6 +525,19 @@ const STEP_VISUALS = {
 };
 const GESTURE_EMOJI = { tap:"👆", type:"⌨️", read:"👀", swipe:"✋" };
 
+/* ---- Platform-branded frame ----
+   Gives each app's mockup its real header color, name, and icon, so it
+   visually reads as "this is TikTok" / "this is WhatsApp" at a glance —
+   important for someone who can't read the text at all. */
+const PLATFORM_FRAME = {
+  whatsapp:  { bg:"#075E54", header:"#128C7E", name:"WhatsApp",  icon:"💬", style:"chat" },
+  messenger: { bg:"#00B2FF", header:"#0084FF", name:"Messenger", icon:"💬", style:"chat" },
+  tiktok:    { bg:"#000000", header:"#000000", name:"TikTok",    icon:"🎵", style:"video" },
+  youtube:   { bg:"#0F0F0F", header:"#FF0000", name:"YouTube",   icon:"▶️", style:"video" },
+  gemini:    { bg:"#1B1C1F", header:"#8E75B2", name:"Gemini",    icon:"✨", style:"chat" },
+  metaai:    { bg:"#1B1C1F", header:"#0064E0", name:"Meta AI",   icon:"🧠", style:"chat" },
+};
+
 /* ---- OPTIONAL real screenshots ----
    Drop your own screenshot files into an "images" folder next to this
    HTML file, then reference them here as:
@@ -603,6 +625,25 @@ function renderStepVisual(key, platformKey){
     </div>`;
   }
 
+  const frame = PLATFORM_FRAME[platformKey];
+  if (frame){
+    // Branded phone frame: colored header bar with the app's real name +
+    // icon, plus a couple of platform-flavor touches (TikTok's side icon
+    // rail, YouTube's red play watermark) so it's recognizable at a glance.
+    const sideExtras = frame.style === "video" && platformKey === "tiktok"
+      ? `<div class="tiktok-rail"><span>❤️</span><span>💬</span><span>➡️</span></div>` : "";
+    const ytWatermark = platformKey === "youtube"
+      ? `<div class="yt-watermark">▶️</div>` : "";
+    return `<div class="phone-mock" style="background:${frame.bg}">
+      <div class="app-header" style="background:${frame.header}">
+        <span class="app-header__icon">${frame.icon}</span> ${frame.name}
+      </div>
+      <div class="phone-mock__screen" style="background:${frame.style === 'video' ? '#fff' : '#fff'}">
+        ${ytWatermark}${inner}${sideExtras}
+      </div>
+    </div>`;
+  }
+
   return `<div class="phone-mock"><div class="phone-mock__notch"></div>
     <div class="phone-mock__screen">${inner}</div></div>`;
 }
@@ -671,12 +712,12 @@ function openPlatform(key){
     card.onclick = () => {
       if (isUnlocked){ openLesson(key, lvl.id); return; }
       if (!canAfford){ showToast(t("need_more_points", { n: cost - state.points })); return; }
-      if (confirm(t("confirm_unlock", { n: cost }))){
-        state.points -= cost;
-        state.unlocked[lvl.id] = true;
-        saveState();
-        openPlatform(key);
-      }
+      // Enough points — unlock immediately, no confirmation popup.
+      state.points -= cost;
+      state.unlocked[lvl.id] = true;
+      saveState();
+      showToast(t("unlocked_msg", { n: cost }));
+      openLesson(key, lvl.id);
     };
     const lockLine = !isUnlocked
       ? `<div class="level-meta" style="color:${canAfford ? '#3FAE58' : '#C0392B'}">${canAfford ? t("unlock_for_points",{n:cost}) : t("points_short",{n:cost - state.points})}</div>`
